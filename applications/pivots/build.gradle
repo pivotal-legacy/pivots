@@ -1,0 +1,16 @@
+buildscript {
+    repositories { mavenCentral() }
+
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.5.RELEASE")
+    }
+}
+
+apply plugin: 'spring-boot'
+
+mainClassName = "io.pivotal.pivots.Application"
+
+dependencies {
+    compile 'org.springframework.boot:spring-boot-starter-web:1.2.5.RELEASE'
+    compile 'org.springframework.boot:spring-boot-starter-jdbc:1.2.5.RELEASE'
+}

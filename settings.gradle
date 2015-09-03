@@ -1,0 +1,5 @@
+rootProject.name = 'pivots'
+
+include 'applications/pivots'
+
+include ':components/directory'

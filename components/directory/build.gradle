@@ -1,0 +1,7 @@
+dependencies {
+    compile 'org.springframework:spring-webmvc:4.2.0.RELEASE'
+    compile 'org.springframework:spring-jdbc:4.2.0.RELEASE'
+
+    testCompile "org.springframework:spring-test:4.2.0.RELEASE"
+    testCompile "javax.servlet:javax.servlet-api:3.1.0"
+}
