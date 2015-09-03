@@ -3,29 +3,26 @@ package pivotal.directory;
 
 import io.pivotal.directory.Employee;
 import io.pivotal.directory.EmployeesController;
-import io.pivotal.directory.EmployeesRepo;
+import io.pivotal.directory.EmployeesRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.List;
 
 import static java.util.Arrays.asList;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
+import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
 public class EmployeesControllerTest {
     MockMvc mockMvc;
-    EmployeesRepo repo;
+    EmployeesRepository repo;
 
     @Before
     public void setUp() throws Exception {
-        repo = mock(EmployeesRepo.class);
+        repo = mock(EmployeesRepository.class);
         EmployeesController employeesController = new EmployeesController(repo);
 
         mockMvc = standaloneSetup(employeesController).build();

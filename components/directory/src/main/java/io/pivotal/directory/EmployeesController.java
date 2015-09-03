@@ -7,15 +7,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class EmployeesController {
 
-    private EmployeesRepo employeesRepo;
+    private EmployeesRepository employeesRepository;
 
     @Autowired
-    public EmployeesController(EmployeesRepo employeesRepo) {
-        this.employeesRepo = employeesRepo;
+    public EmployeesController(EmployeesRepository employeesRepository) {
+        this.employeesRepository = employeesRepository;
     }
 
     @RequestMapping(value = "/")
     public void getAllEmployees() {
-        employeesRepo.getAll();
+        employeesRepository.getAll();
     }
 }

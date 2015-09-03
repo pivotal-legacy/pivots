@@ -2,8 +2,10 @@ package io.pivotal.directory;
 
 import java.util.List;
 
-public class EmployeesRepo {
+import static java.util.Arrays.asList;
+
+public class EmployeesRepository {
     public List<Employee> getAll() {
-        return null;
+        return asList();
     }
 }
