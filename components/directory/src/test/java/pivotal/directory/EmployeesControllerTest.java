@@ -18,12 +18,12 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standal
 
 public class EmployeesControllerTest {
     MockMvc mockMvc;
-    EmployeesRepository repo;
+    EmployeesRepository employeesRepository;
 
     @Before
     public void setUp() throws Exception {
-        repo = mock(EmployeesRepository.class);
-        EmployeesController employeesController = new EmployeesController(repo);
+        employeesRepository = mock(EmployeesRepository.class);
+        EmployeesController employeesController = new EmployeesController(employeesRepository);
 
         mockMvc = standaloneSetup(employeesController).build();
     }
@@ -31,9 +31,9 @@ public class EmployeesControllerTest {
     @Test
     public void testWiring() throws Exception {
         List<Employee> allEmployees = asList(new Employee("Alice"), new Employee("Bob"));
-        when(repo.getAll()).thenReturn(allEmployees);
+        when(employeesRepository.getAll()).thenReturn(allEmployees);
 
-        mockMvc.perform(get("/")).andExpect(status().isOk());
-        verify(repo).getAll();
+        mockMvc.perform(get("/employees")).andExpect(status().isOk());
+        verify(employeesRepository).getAll();
     }
 }
