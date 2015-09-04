@@ -1,3 +1,3 @@
-# pivots-spring-boot
+# pivots-spring
 
-An internal directory using Spring Boot
+An internal directory using Spring Web MVC
