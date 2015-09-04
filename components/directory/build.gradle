@@ -10,5 +10,5 @@ dependencies {
     testCompile "com.jayway.jsonpath:json-path:2.0.0"
     testCompile "com.jayway.jsonpath:json-path-assert:2.0.0"
 
-    testCompile "org.postgresql:postgresql:9.4-1201-jdbc41"
+    testCompile project(":components/testing-utils")
 }

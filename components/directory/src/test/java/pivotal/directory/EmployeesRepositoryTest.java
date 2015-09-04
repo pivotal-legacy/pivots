@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.List;
 
+import static io.pivotal.testing.SqlTestingUtils.prepareTestingDataSource;
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
 
@@ -18,7 +19,7 @@ public class EmployeesRepositoryTest {
 
     @Before
     public void setUp() throws Exception {
-        jdbcTemplate = new JdbcTemplate(SqlTestingUtils.prepareTestingDataSource());
+        jdbcTemplate = new JdbcTemplate(prepareTestingDataSource());
         employeesRepository = new EmployeesRepository(jdbcTemplate);
     }
 

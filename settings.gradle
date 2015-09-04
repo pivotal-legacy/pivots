@@ -3,3 +3,4 @@ rootProject.name = 'pivots'
 include 'applications/pivots'
 
 include ':components/directory'
+include ':components/testing-utils'

@@ -1,4 +1,4 @@
-package pivotal.directory;
+package io.pivotal.testing;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
