@@ -23,11 +23,11 @@ public class EmployeesRepositoryTest {
     }
 
     @Test
-    public void testGetAll() throws Exception {
+    public void testSelectAll() throws Exception {
         try {
             jdbcTemplate.update("INSERT INTO employees (first_name) VALUES ('Rina'), ('Shintaro')");
 
-            List<Employee> employees = employeesRepository.getAll();
+            List<Employee> employees = employeesRepository.selectAll();
 
             assertThat(employees.get(0).getName(), equalTo("Rina"));
             assertThat(employees.get(1).getName(), equalTo("Shintaro"));
@@ -38,14 +38,16 @@ public class EmployeesRepositoryTest {
     }
 
     @Test
-    public void testFindById() throws Exception {
+    public void testSelectById() throws Exception {
         try {
             long employeeId = jdbcTemplate.queryForObject(
                     "INSERT INTO employees (first_name) VALUES ('Rina') RETURNING id",
-                    (rs, rowNum) -> { return rs.getLong(1); }
+                    (rs, rowNum) -> {
+                        return rs.getLong(1);
+                    }
             );
 
-            Employee employee = employeesRepository.findById(employeeId);
+            Employee employee = employeesRepository.selectById(employeeId);
 
             assertThat(employee.getId(), equalTo(employeeId));
             assertThat(employee.getName(), equalTo("Rina"));

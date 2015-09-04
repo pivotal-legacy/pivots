@@ -21,11 +21,11 @@ public class EmployeesController {
 
     @RequestMapping(value = "/employees", method = GET)
     public List<Employee> getAllEmployees() {
-        return employeesRepository.getAll();
+        return employeesRepository.selectAll();
     }
 
     @RequestMapping(value = "/employees/{id}", method = GET)
     public Employee getSingleEmployee(@PathVariable long id) {
-        return employeesRepository.findById(id);
+        return employeesRepository.selectById(id);
     }
 }

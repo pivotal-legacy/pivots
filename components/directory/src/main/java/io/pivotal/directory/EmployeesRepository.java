@@ -15,13 +15,13 @@ public class EmployeesRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public List<Employee> getAll() {
+    public List<Employee> selectAll() {
         return jdbcTemplate.query("SELECT * FROM employees", (rs, rowNum) -> {
             return new Employee(rs.getInt(1), rs.getString(2));
         });
     }
 
-    public Employee findById(long id) {
+    public Employee selectById(long id) {
         return jdbcTemplate.queryForObject("SELECT * FROM employees WHERE id = (?)", (rs, rowNum) -> {
             return new Employee(rs.getInt(1), rs.getString(2));
         }, id);
