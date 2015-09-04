@@ -27,7 +27,7 @@ public class Application {
         contextHandler.addServlet(new ServletHolder(new DispatcherServlet(context)), MAPPING_URL);
         contextHandler.addEventListener(new ContextLoaderListener(context));
 
-        logger.debug("Starting server at port {}", DEFAULT_PORT);
+        logger.info("Starting server at port {}", DEFAULT_PORT);
         Server server = new Server(Integer.valueOf(DEFAULT_PORT));
         server.setHandler(contextHandler);
         server.start();

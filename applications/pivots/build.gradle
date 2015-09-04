@@ -8,4 +8,5 @@ dependencies {
     compile "org.eclipse.jetty:jetty-servlet:9.3.1.v20150714"
 
     compile project(":components/directory")
+    compile project(":components/http-metrics")
 }
