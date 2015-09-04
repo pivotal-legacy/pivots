@@ -20,4 +20,10 @@ public class EmployeesRepository {
             return new Employee(rs.getInt(1), rs.getString(2));
         });
     }
+
+    public Employee findById(long id) {
+        return jdbcTemplate.queryForObject("SELECT * FROM employees WHERE id = (?)", (rs, rowNum) -> {
+            return new Employee(rs.getInt(1), rs.getString(2));
+        }, id);
+    }
 }

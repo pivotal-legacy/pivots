@@ -36,4 +36,22 @@ public class EmployeesRepositoryTest {
             jdbcTemplate.update("DELETE FROM employees");
         }
     }
+
+    @Test
+    public void testFindById() throws Exception {
+        try {
+            long employeeId = jdbcTemplate.queryForObject(
+                    "INSERT INTO employees (first_name) VALUES ('Rina') RETURNING id",
+                    (rs, rowNum) -> { return rs.getLong(1); }
+            );
+
+            Employee employee = employeesRepository.findById(employeeId);
+
+            assertThat(employee.getId(), equalTo(employeeId));
+            assertThat(employee.getName(), equalTo("Rina"));
+
+        } finally {
+            jdbcTemplate.update("DELETE FROM employees");
+        }
+    }
 }
