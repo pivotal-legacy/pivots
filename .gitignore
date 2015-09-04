@@ -3,3 +3,4 @@ build
 *.iml
 .idea
 .env
+.DS_Store
