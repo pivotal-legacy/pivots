@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
@@ -26,6 +27,13 @@ public class EmployeesController {
 
     @RequestMapping(value = "/employees/{id}", method = GET)
     public Employee getSingleEmployee(@PathVariable long id) {
-        return employeesRepository.selectById(id);
+        Optional<Employee> employee = employeesRepository.selectById(id);
+
+        if (employee.isPresent()) {
+            return employee.get();
+        }
+
+        throw new RestControllerException("The employee with ID " + id + " was not found.");
     }
+
 }

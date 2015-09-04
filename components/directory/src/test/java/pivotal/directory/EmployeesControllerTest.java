@@ -4,11 +4,13 @@ package pivotal.directory;
 import io.pivotal.directory.Employee;
 import io.pivotal.directory.EmployeesController;
 import io.pivotal.directory.EmployeesRepository;
+import io.pivotal.directory.RestControllerExceptionHandler;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
+import java.util.Optional;
 
 import static java.util.Arrays.asList;
 import static org.hamcrest.Matchers.equalTo;
@@ -17,6 +19,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
+import static pivotal.directory.ControllerTestingUtils.createControllerAdvice;
 
 public class EmployeesControllerTest {
     MockMvc mockMvc;
@@ -27,7 +30,9 @@ public class EmployeesControllerTest {
         employeesRepository = mock(EmployeesRepository.class);
         EmployeesController employeesController = new EmployeesController(employeesRepository);
 
-        mockMvc = standaloneSetup(employeesController).build();
+        mockMvc = standaloneSetup(employeesController)
+                .setControllerAdvice(createControllerAdvice(new RestControllerExceptionHandler()))
+                .build();
     }
 
     @Test
@@ -46,7 +51,7 @@ public class EmployeesControllerTest {
     @Test
     public void testGettingASingleEmployee() throws Exception {
         Employee employee = new Employee(1, "Rina");
-        when(employeesRepository.selectById(1)).thenReturn(employee);
+        when(employeesRepository.selectById(1)).thenReturn(Optional.of(employee));
 
         mockMvc.perform(get("/employees/1"))
                 .andExpect(status().isOk())
@@ -54,5 +59,14 @@ public class EmployeesControllerTest {
                 .andExpect(jsonPath("$.name", equalTo("Rina")));
 
         verify(employeesRepository).selectById(1L);
+    }
+
+    @Test
+    public void testGettingASingleEmployee_whenNotFound() throws Exception {
+        when(employeesRepository.selectById(anyLong())).thenReturn(Optional.empty());
+
+        mockMvc.perform(get("/employees/1"))
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$.error", equalTo("The employee with ID 1 was not found.")));
     }
 }
