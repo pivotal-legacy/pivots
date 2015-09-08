@@ -1,6 +1,8 @@
 package io.pivotal.pivotsapp;
 
 import io.pivotal.security.TokenAuthenticationService;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.GenericFilterBean;
 
@@ -15,15 +17,16 @@ class AuthenticationFilter extends GenericFilterBean {
 
     private final TokenAuthenticationService tokenAuthenticationService;
 
-    protected AuthenticationFilter(TokenAuthenticationService taService) {
-        this.tokenAuthenticationService = taService;
+    protected AuthenticationFilter(TokenAuthenticationService tokenAuthService) {
+        this.tokenAuthenticationService = tokenAuthService;
     }
 
     @Override
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
-        SecurityContextHolder.getContext().setAuthentication(
-                tokenAuthenticationService.getAuthentication((HttpServletRequest) req)
-        );
+        SecurityContext context = SecurityContextHolder.getContext();
+        Authentication authentication = tokenAuthenticationService.getAuthentication((HttpServletRequest) req);
+        context.setAuthentication(authentication);
+
         chain.doFilter(req, res); // always continue
     }
 

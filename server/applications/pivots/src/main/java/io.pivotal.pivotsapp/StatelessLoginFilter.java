@@ -33,6 +33,7 @@ class StatelessLoginFilter extends AbstractAuthenticationProcessingFilter {
         super(new AntPathRequestMatcher(urlMapping));
         this.userDetailsService = userDetailsService;
         this.tokenAuthenticationService = tokenAuthenticationService;
+
         setAuthenticationManager(authManager);
     }
 
