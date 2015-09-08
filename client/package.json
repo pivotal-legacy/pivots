@@ -12,6 +12,7 @@
   "dependencies": {
     "react-router": "0.13.x",
     "reflux": "^0.2.7", 
+    "extract-text-webpack-plugin": "^0.8.2",
     "react": "0.13.x",
     "normalize.css": "~3.0.3"
   },

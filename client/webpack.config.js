@@ -6,9 +6,9 @@
  */
 'use strict';
 var webpack = require('webpack');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
-
   output: {
     filename: 'main.js',
     publicPath: '/assets/'
@@ -49,10 +49,10 @@ module.exports = {
       loader: 'react-hot!babel-loader'
     }, {
       test: /\.scss/,
-      loader: 'style-loader!css-loader!sass-loader?outputStyle=expanded'
+      loader: ExtractTextPlugin.extract('css-loader!sass-loader?outputStyle=expanded')
     }, {
       test: /\.css$/,
-      loader: 'style-loader!css-loader'
+      loader: ExtractTextPlugin.extract('css-loader')
     }, {
       test: /\.(png|jpg|woff|woff2)$/,
       loader: 'url-loader?limit=8192'
@@ -60,7 +60,7 @@ module.exports = {
   },
 
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new ExtractTextPlugin("main.css")
   ]
-
 };
