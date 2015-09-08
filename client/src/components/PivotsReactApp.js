@@ -3,8 +3,10 @@
 var React = require('react/addons');
 var ReactTransitionGroup = React.addons.TransitionGroup;
 
+global.jQuery = require('jquery');
+
 // CSS
-require('normalize.css');
+require('bootstrap/dist/css/bootstrap.css');
 require('../styles/application.css');
 
 var imageURL = require('../images/yeoman.png');
