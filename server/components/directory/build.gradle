@@ -11,4 +11,7 @@ dependencies {
     testCompile "com.jayway.jsonpath:json-path-assert:2.0.0"
 
     testCompile project(":components/testing-utils")
+
+    testCompile "org.slf4j:slf4j-log4j12:1.7.5"
+    testCompile "org.slf4j:jcl-over-slf4j:1.7.5"
 }
