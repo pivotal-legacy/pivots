@@ -1,6 +1,6 @@
 # pivots-spring
 
-An internal directory using Spring Web MVC
+An internal directory using Spring Boot
 
 ## Setting up for Development
 
@@ -34,5 +34,5 @@ An internal directory using Spring Web MVC
 1. Turn the app on and browse to `localhost:8080/employees`
 
     ```
-    $ java -jar applications/pivots/build/libs/applications/pivots-all.jar
+    $ java -jar applications/pivots/build/libs/applications/pivots.jar
     ```
