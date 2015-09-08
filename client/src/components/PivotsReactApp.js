@@ -5,7 +5,7 @@ var ReactTransitionGroup = React.addons.TransitionGroup;
 
 // CSS
 require('normalize.css');
-require('../styles/main.css');
+require('../styles/application.css');
 
 var imageURL = require('../images/yeoman.png');
 
