@@ -36,3 +36,11 @@ An internal directory using Spring Boot
     ```
     $ java -jar applications/pivots/build/libs/applications/pivots.jar
     ```
+
+## Spring Boot specifics
+
+To see all the auto-configuration done by Spring Boot, pass the `--debug` when launching the jar.
+
+    ```
+    $ java -jar applications/pivots/build/libs/applications/pivots.jar --debug
+    ```
