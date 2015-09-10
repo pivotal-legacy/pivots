@@ -21,6 +21,7 @@ import java.io.IOException;
 
 class StatelessLoginFilter extends AbstractAuthenticationProcessingFilter {
 
+    public static final String POST = "POST";
     private final TokenAuthenticationService tokenAuthenticationService;
     private final UserDetailsService userDetailsService;
 
@@ -30,7 +31,7 @@ class StatelessLoginFilter extends AbstractAuthenticationProcessingFilter {
             UserDetailsService userDetailsService,
             AuthenticationManager authManager
     ) {
-        super(new AntPathRequestMatcher(urlMapping));
+        super(new AntPathRequestMatcher(urlMapping, POST));
         this.userDetailsService = userDetailsService;
         this.tokenAuthenticationService = tokenAuthenticationService;
 
