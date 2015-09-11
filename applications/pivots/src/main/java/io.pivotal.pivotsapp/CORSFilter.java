@@ -17,6 +17,7 @@ public class CORSFilter implements Filter {
     public static final String ALLOWED_METHODS = "POST, GET, OPTIONS, DELETE";
     public static final String ALLOWED_ORIGIN = "*";
     public static final String ALLOWED_HEADERS = "Content-Type, Accept";
+    public static final String EXPOSED_HEADERS = "X-AUTH-TOKEN";
 
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
         HttpServletResponse response = (HttpServletResponse) res;
@@ -24,6 +25,7 @@ public class CORSFilter implements Filter {
         response.setHeader("Access-Control-Allow-Methods", ALLOWED_METHODS);
         response.setHeader("Access-Control-Max-Age", CACHE_TIME);
         response.setHeader("Access-Control-Allow-Headers", ALLOWED_HEADERS);
+        response.setHeader("Access-Control-Expose-Headers", EXPOSED_HEADERS);
 
         chain.doFilter(req, res);
     }
