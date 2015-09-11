@@ -6,7 +6,7 @@ var Route = Router.Route;
 var DefaultRoute = Router.DefaultRoute;
 var NotFoundRoute = Router.NotFoundRoute;
 
-var App = require('./components/App');
+var Directory = require('./components/Directory');
 var Login = require('./components/Login');
 var RouteNotFound = require('./components/RouteNotFound');
 
@@ -16,7 +16,7 @@ require('./../css/main.css');
 
 var routes = (
   <Route>
-    <DefaultRoute handler={App}/>
+    <DefaultRoute handler={Directory}/>
     <Route name="login" handler={Login}/>
     <NotFoundRoute handler={RouteNotFound}/>
   </Route>

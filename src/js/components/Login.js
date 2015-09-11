@@ -1,8 +1,7 @@
 var React = require('react');
 var request = require('superagent');
 
-var env = require('../constants/EnvConstants');
-var API_SERVER = env.API_SERVER;
+var API_SERVER = 'http://localhost:8081';
 
 var Login = React.createClass({
   contextTypes: {
@@ -22,6 +21,7 @@ var Login = React.createClass({
       .send({username: username, password: password})
       .end(function(err, res){
         if (res.ok) {
+          window.savedJwt = res.headers['x-auth-token'];
           this.context.router.transitionTo('/');
         }
       }.bind(this));
