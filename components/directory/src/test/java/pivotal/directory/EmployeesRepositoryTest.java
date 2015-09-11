@@ -32,8 +32,8 @@ public class EmployeesRepositoryTest {
 
             List<Employee> employees = employeesRepository.selectAll();
 
-            assertThat(employees.get(0).getName(), equalTo("Rina"));
-            assertThat(employees.get(1).getName(), equalTo("Shintaro"));
+            assertThat(employees.get(0).getFirstName(), equalTo("Rina"));
+            assertThat(employees.get(1).getFirstName(), equalTo("Shintaro"));
 
         } finally {
             jdbcTemplate.update("DELETE FROM employees");
@@ -53,7 +53,7 @@ public class EmployeesRepositoryTest {
             Employee employee = employeesRepository.selectById(employeeId).get();
 
             assertThat(employee.getId(), equalTo(employeeId));
-            assertThat(employee.getName(), equalTo("Rina"));
+            assertThat(employee.getFirstName(), equalTo("Rina"));
 
         } finally {
             jdbcTemplate.update("DELETE FROM employees");

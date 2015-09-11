@@ -16,7 +16,7 @@ public class CORSFilter implements Filter {
     public static final String CACHE_TIME = "3600";
     public static final String ALLOWED_METHODS = "POST, GET, OPTIONS, DELETE";
     public static final String ALLOWED_ORIGIN = "*";
-    public static final String ALLOWED_HEADERS = "Content-Type, Accept";
+    public static final String ALLOWED_HEADERS = "Content-Type, Accept, X-AUTH-TOKEN";
     public static final String EXPOSED_HEADERS = "X-AUTH-TOKEN";
 
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {

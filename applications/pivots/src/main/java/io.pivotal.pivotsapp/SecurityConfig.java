@@ -41,7 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .authorizeRequests()
 
-                .antMatchers(HttpMethod.OPTIONS, "/login").permitAll()
+                .antMatchers(HttpMethod.OPTIONS, "/*").permitAll()
 
                 //allow anonymous POSTs to login
                 .antMatchers(HttpMethod.POST, "/login").permitAll()

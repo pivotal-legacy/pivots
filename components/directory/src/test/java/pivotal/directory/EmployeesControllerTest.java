@@ -37,26 +37,29 @@ public class EmployeesControllerTest {
 
     @Test
     public void testGettingListOfEmployees() throws Exception {
-        List<Employee> allEmployees = asList(new Employee(1, "Rina"), new Employee(2, "Shintaro"));
+        List<Employee> allEmployees = asList(
+                new Employee(1, "Rina", "", "", "", "", "", "", ""),
+                new Employee(2, "Shintaro", "", "", "", "", "", "", "")
+        );
         when(employeesRepository.selectAll()).thenReturn(allEmployees);
 
         mockMvc.perform(get("/employees"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].id", equalTo(1)))
-                .andExpect(jsonPath("$[0].name", equalTo("Rina")));
+                .andExpect(jsonPath("$[0].firstName", equalTo("Rina")));
 
         verify(employeesRepository).selectAll();
     }
 
     @Test
     public void testGettingASingleEmployee() throws Exception {
-        Employee employee = new Employee(1, "Rina");
+        Employee employee = new Employee(1, "Rina", "", "", "", "", "", "", "");
         when(employeesRepository.selectById(1)).thenReturn(Optional.of(employee));
 
         mockMvc.perform(get("/employees/1"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id", equalTo(1)))
-                .andExpect(jsonPath("$.name", equalTo("Rina")));
+                .andExpect(jsonPath("$.firstName", equalTo("Rina")));
 
         verify(employeesRepository).selectById(1L);
     }
