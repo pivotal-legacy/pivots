@@ -2,6 +2,13 @@
 
 var webpack = require('webpack');
 
+var HtmlWebpack = require('html-webpack-plugin');
+var htmlWebPackPlugin = new HtmlWebpack({
+  title: 'Custom template',
+  template: 'src/index.html',
+  inject: 'body'
+});
+
 var envPlugin = new webpack.DefinePlugin({
   __API_SERVER__: JSON.stringify(process.env.API_SERVER)
 });
@@ -9,8 +16,7 @@ var envPlugin = new webpack.DefinePlugin({
 module.exports = {
 
   output: {
-    filename: 'main.js',
-    publicPath: '/js/'
+    filename: 'application.[hash].js'
   },
 
   module: {
@@ -35,6 +41,6 @@ module.exports = {
     ]
   },
 
-  plugins: [envPlugin]
+  plugins: [envPlugin, htmlWebPackPlugin]
 
 };
