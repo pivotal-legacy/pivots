@@ -4,11 +4,12 @@ var React = require('react');
 var request = require('superagent');
 var _ = require('lodash');
 var Face = require('./Face');
+var API_SERVER = require('../constants/EnvConstants').API_SERVER;
 
 var Directory = React.createClass({
   statics: {
     willTransitionTo: function (transition) {
-      if (window.sessionStorage.getItem('savedJwt') === undefined) {
+      if (!window.localStorage.getItem('savedJwt')) {
         transition.redirect('/login');
       }
     }
@@ -21,10 +22,10 @@ var Directory = React.createClass({
   },
 
   componentDidMount: function() {
-    request.get('http://localhost:8081/employees')
+    request.get(API_SERVER + '/employees')
       .set('Content-Type', 'application/json')
       .set('Accept', 'application/json')
-      .set('X-AUTH-TOKEN', window.sessionStorage.getItem('savedJwt'))
+      .set('X-AUTH-TOKEN', window.localStorage.getItem('savedJwt'))
       .end(function(err, result) {
         if (this.isMounted()) {
           this.setState({
