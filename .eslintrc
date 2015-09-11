@@ -9,7 +9,8 @@
     "es6": true,
     "amd": true,
     "commonjs": true,
-    "browser": true
+    "browser": true,
+    "node": true
   },
   "extends": "eslint:recommended",
   "ecmaFeatures": {
