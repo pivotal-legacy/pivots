@@ -21,7 +21,7 @@ var Login = React.createClass({
       .send({username: username, password: password})
       .end(function(err, res){
         if (res.ok) {
-          window.savedJwt = res.headers['x-auth-token'];
+          window.sessionStorage.setItem('savedJwt', res.headers['x-auth-token']);
           this.context.router.transitionTo('/');
         }
       }.bind(this));

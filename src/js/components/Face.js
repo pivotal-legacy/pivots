@@ -10,7 +10,7 @@ var Face = React.createClass({
           <div className='thumbnail'>
             <img src={pivot.imageUrl} />
             <div>
-              <div>{pivot.name}</div>
+              <div>{pivot.firstName} {pivot.lastName}</div>
               <div><em>{pivot.title}</em></div>
               <div>
                 Manager: <span>{pivot.manager}</span>
