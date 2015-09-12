@@ -4,7 +4,6 @@ var webpack = require('webpack');
 
 var HtmlWebpack = require('html-webpack-plugin');
 var htmlWebPackPlugin = new HtmlWebpack({
-  title: 'Custom template',
   template: 'src/index.html',
   inject: 'body'
 });
@@ -34,9 +33,9 @@ module.exports = {
         loader: 'style-loader!css-loader'
       },
       {
-        test: /\.(js|jsx)$/,
+        test: /\.js?$/,
         exclude: /node_modules/,
-        loader: 'react-hot!babel-loader'
+        loader: 'babel'
       }
     ]
   },
