@@ -1,14 +1,15 @@
 var React = require('react');
 
 var Face = React.createClass({
-  render: function() {
+  render: function () {
     var pivot = this.props.pivot;
 
     return (
       <div className='col-md-3'>
         <a>
           <div className='thumbnail'>
-            <img src={pivot.imageUrl} />
+            <img src={pivot.imageUrl}/>
+
             <div>
               <div>{pivot.firstName} {pivot.lastName}</div>
               <div><em>{pivot.title}</em></div>

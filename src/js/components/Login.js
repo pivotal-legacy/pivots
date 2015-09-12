@@ -8,7 +8,7 @@ var Login = React.createClass({
     router: React.PropTypes.func
   },
 
-  handleSubmit: function(e) {
+  handleSubmit: function (e) {
     e.preventDefault();
 
     var username = this.refs.email.getDOMNode().value.trim();
@@ -19,7 +19,7 @@ var Login = React.createClass({
       .set('Content-Type', 'application/json')
       .set('Accept', 'application/json')
       .send({username: username, password: password})
-      .end(function(err, res){
+      .end(function (err, res) {
         if (res.ok) {
           window.localStorage.setItem('savedJwt', res.headers['x-auth-token']);
           this.context.router.transitionTo('/');

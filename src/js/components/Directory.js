@@ -15,18 +15,18 @@ var Directory = React.createClass({
     }
   },
 
-  getInitialState: function() {
+  getInitialState: function () {
     return {
       pivots: []
     };
   },
 
-  componentDidMount: function() {
+  componentDidMount: function () {
     request.get(API_SERVER + '/employees')
       .set('Content-Type', 'application/json')
       .set('Accept', 'application/json')
       .set('X-AUTH-TOKEN', window.localStorage.getItem('savedJwt'))
-      .end(function(err, result) {
+      .end(function (err, result) {
         if (this.isMounted()) {
           this.setState({
             pivots: result.body
@@ -35,10 +35,10 @@ var Directory = React.createClass({
       }.bind(this));
   },
 
-  render: function() {
-    var pivotFaces = _.map(this.state.pivots, function(pivot) {
+  render: function () {
+    var pivotFaces = _.map(this.state.pivots, function (pivot) {
       return (
-        <Face key={pivot.id} pivot={pivot} />
+        <Face key={pivot.id} pivot={pivot}/>
       );
     });
 
