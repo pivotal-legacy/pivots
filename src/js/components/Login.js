@@ -1,7 +1,7 @@
 var React = require('react');
 var request = require('superagent');
 
-var API_SERVER = 'http://localhost:8081';
+var API_SERVER = require('../constants/EnvConstants').API_SERVER;
 
 var Login = React.createClass({
   contextTypes: {
