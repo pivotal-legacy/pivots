@@ -31,4 +31,6 @@ node_modules/
 .tmp
 dist
 .idea
-.env
+.env.dev
+.env.staging
+.env.prod
