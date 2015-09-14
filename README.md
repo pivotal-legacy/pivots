@@ -22,8 +22,8 @@ The client application depends on an environment file to set the API server url.
 
 In this project, we use several environment files:
 
-  .env.dev      # for development variables
-  .env.staging  # for the staging environment
-  .env.prod     # for the production environment
+    .env.dev      # for development variables
+    .env.staging  # for the staging environment
+    .env.prod     # for the production environment
 
 All three environment files are intentionally ignored by version control.
