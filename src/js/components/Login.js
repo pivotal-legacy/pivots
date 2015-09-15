@@ -1,11 +1,20 @@
 var React = require('react');
-var request = require('superagent');
+var Reflux = require('reflux');
 
-var API_SERVER = require('../constants/EnvConstants').API_SERVER;
+var UserActions = require('../actions/UserActions');
+var UserStore = require('../stores/UserStore');
 
 var Login = React.createClass({
+  mixins: [
+    Reflux.listenTo(UserStore, 'onUserStoreChange')
+  ],
+
   contextTypes: {
     router: React.PropTypes.func
+  },
+
+  onUserStoreChange: function () {
+    this.context.router.transitionTo('/');
   },
 
   handleSubmit: function (e) {
@@ -14,17 +23,7 @@ var Login = React.createClass({
     var username = this.refs.email.getDOMNode().value.trim();
     var password = this.refs.password.getDOMNode().value.trim();
 
-    request
-      .post(API_SERVER + '/login')
-      .set('Content-Type', 'application/json')
-      .set('Accept', 'application/json')
-      .send({username: username, password: password})
-      .end(function (err, res) {
-        if (res.ok) {
-          window.localStorage.setItem('savedJwt', res.headers['x-auth-token']);
-          this.context.router.transitionTo('/');
-        }
-      }.bind(this));
+    UserActions.login(username, password);
   },
 
   render: function () {
