@@ -7,6 +7,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+import java.util.Optional;
+
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.anyString;
@@ -28,7 +30,7 @@ public class PersistedUserDetailsServiceTest {
 
     @Test
     public void testLoadUserByUsername() throws Exception {
-        when(userRepository.findByUsername(anyString())).thenReturn(user);
+        when(userRepository.findByUsername(anyString())).thenReturn(Optional.of(user));
 
         User foundUser = persistedUserDetailsService.loadUserByUsername("Shintaro");
 
@@ -37,7 +39,7 @@ public class PersistedUserDetailsServiceTest {
 
     @Test(expected = UsernameNotFoundException.class)
     public void testLoadByUsername_throwsAnExceptionWhenTheUserIsNotFound() throws Exception {
-        when(userRepository.findByUsername(anyString())).thenReturn(null);
+        when(userRepository.findByUsername(anyString())).thenReturn(Optional.empty());
 
         persistedUserDetailsService.loadUserByUsername("Shintaro");
     }
