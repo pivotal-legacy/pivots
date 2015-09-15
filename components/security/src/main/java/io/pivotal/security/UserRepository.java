@@ -22,7 +22,7 @@ public class UserRepository {
         users = asList(user1, user2);
     }
 
-    User findByUsername(String username) {
+    public User findByUsername(String username) {
         return users.stream()
                 .filter((u) -> u.getUsername().equals(username))
                 .findFirst()
