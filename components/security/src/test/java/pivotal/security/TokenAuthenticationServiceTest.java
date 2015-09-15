@@ -5,44 +5,80 @@ import io.pivotal.security.TokenService;
 import io.pivotal.security.User;
 import io.pivotal.security.UserAuthentication;
 import io.pivotal.testing.FakeHttpResponse;
+import io.pivotal.testing.FakeHttpRequest;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.security.core.Authentication;
 
 import static javax.servlet.http.HttpServletResponse.SC_NO_CONTENT;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class TokenAuthenticationServiceTest {
-    private TokenAuthenticationService tokenAuthenticationService;
-    private FakeHttpResponse httpResponse;
-    private UserAuthentication userAuthentication;
-    private User user;
-    private TokenService tokenService;
+    TokenAuthenticationService tokenAuthenticationService;
+    FakeHttpResponse httpResponse;
+    UserAuthentication userAuthentication;
+    User user;
+    TokenService tokenService;
+    FakeHttpRequest httpRequest;
 
     @Before
     public void setUp() throws Exception {
         tokenService = mock(TokenService.class);
         tokenAuthenticationService = new TokenAuthenticationService(tokenService);
 
+        httpRequest = new FakeHttpRequest();
         httpResponse = new FakeHttpResponse();
+
         user = new User("Rina");
         userAuthentication = new UserAuthentication(user);
     }
 
     @Test
     public void testAddAuthentication_addsUserTokenToResponse() throws Exception {
-        when(tokenService.createTokenForUser(any())).thenReturn("jwt-token");
+        when(tokenService.createTokenForUser(any())).thenReturn("some-jwt-token");
+
 
         tokenAuthenticationService.addAuthentication(httpResponse, userAuthentication);
 
-        assertThat(httpResponse.getStatus(), is(SC_NO_CONTENT));
-        assertThat(httpResponse.getHeader("X-AUTH-TOKEN"), is("jwt-token"));
 
+        assertThat(httpResponse.getStatus(), is(SC_NO_CONTENT));
+        assertThat(httpResponse.getHeader("X-AUTH-TOKEN"), is("some-jwt-token"));
         verify(tokenService).createTokenForUser(user);
     }
 
+    @Test
+    public void testGetAuthentication_returnsAUserFromAToken() throws Exception {
+        httpRequest.addHeader("X-AUTH-TOKEN", "some-jwt-token");
+        when(tokenService.parseUserFromToken(any())).thenReturn(user);
+
+
+        Authentication authentication = tokenAuthenticationService.getAuthentication(httpRequest);
+
+
+        assertThat(authentication.getDetails(), is(user));
+        verify(tokenService).parseUserFromToken("some-jwt-token");
+    }
+
+    @Test
+    public void testGetAuthentication_returnsNullWhenNoTokenIsPresent() throws Exception {
+        Authentication authentication = tokenAuthenticationService.getAuthentication(httpRequest);
+
+        assertThat(authentication, nullValue());
+    }
+
+    @Test
+    public void testGetAuthentication_returnsNull_forAGarbageToken() throws Exception {
+        httpRequest.addHeader("X-AUTH-TOKEN", "some-garbage-token");
+        when(tokenService.parseUserFromToken(any())).thenReturn(null);
+
+
+        Authentication authentication = tokenAuthenticationService.getAuthentication(httpRequest);
+
+
+        assertThat(authentication, nullValue());
+    }
 }
