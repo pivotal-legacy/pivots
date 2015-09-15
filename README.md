@@ -4,35 +4,35 @@ An internal directory using Spring Boot
 
 ## Setting up for Development
 
-1. Create a test and development database.
+- Create a test and development database.
 
 ```
 $ createdb pivots_test
 $ createdb pivots_development
 ```
 
-2. Migrate the test and development databases
+- Migrate the test and development databases
 
 ```
 $ psql -d pivots_test -f components/directory/sql/initial_schema.ddl
 $ psql -d pivots_development -f components/directory/sql/initial_schema.ddl
 ```
 
-3. (Optional) Seed the development database with sample data
+- (Optional) Seed the development database with sample data
 
 ```
 $ psql -d pivots_development -f components/directory/sql/seed_data.sql
 ```
 
-4. Create and source an `.env` file following `.env.example` with the appropriate values.
+- Create and source an `.env` file following `.env.example` with the appropriate values.
 
-5. Build the artifact from the project root.
+- Build the artifact from the project root.
 
 ```
 $ ./gradlew
 ```
 
-6. Turn the app on and browse to `localhost:8080/employees`
+- Turn the app on and browse to `localhost:8080/employees`
 
 ```
 $ java -jar applications/pivots/build/libs/applications/pivots.jar
