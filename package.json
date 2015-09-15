@@ -20,6 +20,7 @@
   "dependencies": {
     "lodash": "^3.10.1",
     "normalize.css": "^3.0.3",
+    "q": "^1.4.1",
     "react": "^0.13.3",
     "react-router": "^0.13.3",
     "reflux": "^0.2.12",
