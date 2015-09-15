@@ -23,39 +23,48 @@ public class Employee {
         this.startDate = startDate;
     }
 
-    public String getLastName() {
-        return lastName;
+    @SuppressWarnings("unused") // Getter for Jackson JSON serialization
+    public long getId() {
+        return id;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getManager() {
-        return manager;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public String getStartDate() {
-        return startDate;
-    }
-
+    @SuppressWarnings("unused") // Getter for Jackson JSON serialization
     public String getFirstName() {
         return firstName;
     }
 
-    public long getId() {
-        return id;
+    @SuppressWarnings("unused") // Getter for Jackson JSON serialization
+    public String getLastName() {
+        return lastName;
+    }
+
+    @SuppressWarnings("unused") // Getter for Jackson JSON serialization
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    @SuppressWarnings("unused") // Getter for Jackson JSON serialization
+    public String getTitle() {
+        return title;
+    }
+
+    @SuppressWarnings("unused") // Getter for Jackson JSON serialization
+    public String getManager() {
+        return manager;
+    }
+
+    @SuppressWarnings("unused") // Getter for Jackson JSON serialization
+    public String getEmail() {
+        return email;
+    }
+
+    @SuppressWarnings("unused") // Getter for Jackson JSON serialization
+    public String getLocation() {
+        return location;
+    }
+
+    @SuppressWarnings("unused") // Getter for Jackson JSON serialization
+    public String getStartDate() {
+        return startDate;
     }
 }
