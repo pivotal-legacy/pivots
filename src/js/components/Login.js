@@ -4,13 +4,20 @@ var Reflux = require('reflux');
 var UserActions = require('../actions/UserActions');
 var UserStore = require('../stores/UserStore');
 
+require('react/addons');
+
 var Login = React.createClass({
   mixins: [
+    React.addons.LinkedStateMixin,
     Reflux.listenTo(UserStore, 'onUserStoreChange')
   ],
 
   contextTypes: {
     router: React.PropTypes.func
+  },
+
+  getInitialState: function() {
+    return {username: undefined, password: undefined};
   },
 
   onUserStoreChange: function () {
@@ -20,10 +27,7 @@ var Login = React.createClass({
   handleSubmit: function (e) {
     e.preventDefault();
 
-    var username = this.refs.email.getDOMNode().value.trim();
-    var password = this.refs.password.getDOMNode().value.trim();
-
-    UserActions.login(username, password);
+    UserActions.login(this.state.username, this.state.password);
   },
 
   render: function () {
@@ -33,12 +37,12 @@ var Login = React.createClass({
 
         <form className="form-inline" onSubmit={this.handleSubmit}>
           <div className="form-group">
-            <label className="sr-only" htmlFor="email">Email address</label>
-            <input type="text" className="form-control" id="email" ref="email" placeholder="Email"/>
+            <label className="sr-only" htmlFor="username">Username</label>
+            <input type="text" className="form-control" id="username" placeholder="Username" valueLink={this.linkState('username')} />
           </div>
           <div className="form-group">
             <label className="sr-only" htmlFor="password">Password</label>
-            <input type="password" className="form-control" id="password" ref="password" placeholder="Password"/>
+            <input type="password" className="form-control" id="password" placeholder="Password" valueLink={this.linkState('password')} />
           </div>
           <button type="submit" className="btn btn-default">Sign in</button>
         </form>
