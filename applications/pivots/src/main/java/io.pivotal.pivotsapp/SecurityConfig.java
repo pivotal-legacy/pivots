@@ -1,7 +1,7 @@
 package io.pivotal.pivotsapp;
 
-import io.pivotal.security.TokenAuthenticationService;
 import io.pivotal.security.PersistedUserDetailsService;
+import io.pivotal.security.TokenAuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -59,7 +59,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilterBefore(
                         new AuthenticationFilter(tokenAuthenticationService),
                         UsernamePasswordAuthenticationFilter.class
-                );
+                )
+
+                .anonymous();
+
     }
 
     @Bean
