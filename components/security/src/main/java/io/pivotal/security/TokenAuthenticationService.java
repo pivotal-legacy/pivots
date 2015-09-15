@@ -16,11 +16,11 @@ public class TokenAuthenticationService {
 
     private static final String AUTH_HEADER_NAME = "X-AUTH-TOKEN";
 
-    private final TokenHandler tokenHandler;
+    private final JwtTokenHandler tokenHandler;
 
     @Autowired
     public TokenAuthenticationService(@Value("${token.secret}") String secret) {
-        tokenHandler = new TokenHandler(DatatypeConverter.parseBase64Binary(secret));
+        tokenHandler = new JwtTokenHandler(DatatypeConverter.parseBase64Binary(secret));
     }
 
     public void addAuthentication(HttpServletResponse response, UserAuthentication authentication) {

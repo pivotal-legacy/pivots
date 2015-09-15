@@ -12,7 +12,7 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
-public final class TokenHandler {
+public final class JwtTokenHandler {
 
     private static final String HMAC_ALGO = "HmacSHA256";
     private static final String SEPARATOR = ".";
@@ -20,7 +20,7 @@ public final class TokenHandler {
 
     private final Mac hmac;
 
-    public TokenHandler(byte[] secretKey) {
+    public JwtTokenHandler(byte[] secretKey) {
         try {
             hmac = Mac.getInstance(HMAC_ALGO);
             hmac.init(new SecretKeySpec(secretKey, HMAC_ALGO));
