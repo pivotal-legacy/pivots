@@ -9,6 +9,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -44,8 +45,10 @@ class StatelessLoginFilter extends AbstractAuthenticationProcessingFilter {
 
         final User user = new ObjectMapper().readValue(request.getInputStream(), User.class);
         final UsernamePasswordAuthenticationToken loginToken = new UsernamePasswordAuthenticationToken(
-                user.getUsername(), user.getPassword()
+                user.getUsername(),
+                user.getPassword()
         );
+
         return getAuthenticationManager().authenticate(loginToken);
     }
 
@@ -57,15 +60,13 @@ class StatelessLoginFilter extends AbstractAuthenticationProcessingFilter {
             Authentication authentication
     ) throws IOException, ServletException {
 
-        // Lookup the complete User object from the database and create an Authentication for it
         final User authenticatedUser = userDetailsService.loadUserByUsername(authentication.getName());
         final UserAuthentication userAuthentication = new UserAuthentication(authenticatedUser);
 
-        // Add the custom token as HTTP header to the response
         tokenAuthenticationService.addAuthentication(response, authenticatedUser);
 
-        // Add the authentication to the Security context
-        SecurityContextHolder.getContext().setAuthentication(userAuthentication);
+        SecurityContext context = SecurityContextHolder.getContext();
+        context.setAuthentication(userAuthentication);
     }
 
 }

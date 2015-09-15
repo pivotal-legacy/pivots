@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -15,10 +14,16 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import static org.springframework.http.HttpMethod.OPTIONS;
+import static org.springframework.http.HttpMethod.POST;
+
 @EnableWebSecurity
 @Configuration
 @Order(1)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    public static final String ALL_ENDPOINTS = "/**";
+    public static final String LOGIN_ENDPOINT = "/login";
 
     @Autowired
     private PersistedUserDetailsService userDetailsService;
@@ -33,30 +38,28 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .exceptionHandling().and()
-                .anonymous().and()
-                .servletApi().and()
-                .headers().cacheControl();
-        http
-
                 .authorizeRequests()
 
-                .antMatchers(HttpMethod.OPTIONS, "/*").permitAll()
+                .antMatchers(OPTIONS, ALL_ENDPOINTS).permitAll()
 
-                //allow anonymous POSTs to login
-                .antMatchers(HttpMethod.POST, "/login").permitAll()
+                .antMatchers(POST, LOGIN_ENDPOINT).permitAll()
 
-                //defined Admin only API area
-                .antMatchers("/admin/**").hasRole("ADMIN")
-
-                //all other request need to be authenticated
                 .anyRequest().hasRole("USER").and()
 
-                // custom JSON based authentication by POST of {"username":"<name>","password":"<password>"} which sets the token header upon authentication
-                .addFilterBefore(new StatelessLoginFilter("/login", tokenAuthenticationService, userDetailsService, authenticationManager()), UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(
+                        new StatelessLoginFilter(
+                                LOGIN_ENDPOINT,
+                                tokenAuthenticationService,
+                                userDetailsService,
+                                authenticationManager()
+                        ),
+                        UsernamePasswordAuthenticationFilter.class
+                )
 
-                        // custom Token based authentication based on the header previously given to the client
-                .addFilterBefore(new AuthenticationFilter(tokenAuthenticationService), UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(
+                        new AuthenticationFilter(tokenAuthenticationService),
+                        UsernamePasswordAuthenticationFilter.class
+                );
     }
 
     @Bean
