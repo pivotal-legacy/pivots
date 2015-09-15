@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class User implements UserDetails {
 
@@ -79,9 +80,7 @@ public class User implements UserDetails {
     public Set<UserRole> getRoles() {
         Set<UserRole> roles = EnumSet.noneOf(UserRole.class);
         if (authorities != null) {
-            for (UserAuthority authority : authorities) {
-                roles.add(UserRole.valueOf(authority));
-            }
+            roles.addAll(authorities.stream().map(UserRole::valueOf).collect(Collectors.toList()));
         }
         return roles;
     }
