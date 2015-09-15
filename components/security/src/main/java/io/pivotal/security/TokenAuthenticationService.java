@@ -20,10 +20,10 @@ public class TokenAuthenticationService {
         this.tokenService = tokenService;
     }
 
-    public void addAuthentication(HttpServletResponse response, UserAuthentication userAuthentication) {
-        User user = userAuthentication.getDetails();
+    public void addAuthentication(HttpServletResponse response, User authenticatedUser) {
+        String userToken = tokenService.createTokenForUser(authenticatedUser);
 
-        response.addHeader(AUTH_HEADER_NAME, tokenService.createTokenForUser(user));
+        response.addHeader(AUTH_HEADER_NAME, userToken);
         response.setStatus(SC_NO_CONTENT);
     }
 

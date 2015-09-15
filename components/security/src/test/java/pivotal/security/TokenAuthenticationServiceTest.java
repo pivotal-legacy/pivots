@@ -3,9 +3,8 @@ package pivotal.security;
 import io.pivotal.security.TokenAuthenticationService;
 import io.pivotal.security.TokenService;
 import io.pivotal.security.User;
-import io.pivotal.security.UserAuthentication;
-import io.pivotal.testing.FakeHttpResponse;
 import io.pivotal.testing.FakeHttpRequest;
+import io.pivotal.testing.FakeHttpResponse;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.security.core.Authentication;
@@ -20,7 +19,6 @@ import static org.mockito.Mockito.*;
 public class TokenAuthenticationServiceTest {
     TokenAuthenticationService tokenAuthenticationService;
     FakeHttpResponse httpResponse;
-    UserAuthentication userAuthentication;
     User user;
     TokenService tokenService;
     FakeHttpRequest httpRequest;
@@ -34,7 +32,6 @@ public class TokenAuthenticationServiceTest {
         httpResponse = new FakeHttpResponse();
 
         user = new User("Rina");
-        userAuthentication = new UserAuthentication(user);
     }
 
     @Test
@@ -42,7 +39,7 @@ public class TokenAuthenticationServiceTest {
         when(tokenService.createTokenForUser(any())).thenReturn("some-jwt-token");
 
 
-        tokenAuthenticationService.addAuthentication(httpResponse, userAuthentication);
+        tokenAuthenticationService.addAuthentication(httpResponse, user);
 
 
         assertThat(httpResponse.getStatus(), is(SC_NO_CONTENT));
