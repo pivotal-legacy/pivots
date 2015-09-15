@@ -1,5 +1,9 @@
-### SublimeText ###
-*.sublime-workspace
+### Gradle and Intellij ###
+.gradle
+build
+*.iml
+.idea
+.env
 
 ### OSX ###
 .DS_Store
