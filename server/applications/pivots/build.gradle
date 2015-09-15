@@ -1,0 +1,11 @@
+dependencies {
+    compile("com.zaxxer:HikariCP:2.4.0")
+    compile("org.postgresql:postgresql:9.4-1201-jdbc41")
+    compile("org.springframework.boot:spring-boot-starter-jdbc")
+    compile("org.springframework.boot:spring-boot-starter-web")
+
+    compile("org.springframework.boot:spring-boot-starter-security")
+
+    compile project(":components/directory")
+    compile project(":components/security")
+}
