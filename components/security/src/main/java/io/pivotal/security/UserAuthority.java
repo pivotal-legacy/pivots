@@ -3,6 +3,8 @@ package io.pivotal.security;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 
+import java.util.Objects;
+
 public class UserAuthority implements GrantedAuthority {
 
     @JsonIgnore
@@ -33,7 +35,8 @@ public class UserAuthority implements GrantedAuthority {
             return false;
 
         UserAuthority ua = (UserAuthority) obj;
-        return ua.getAuthority() == this.getAuthority() || ua.getAuthority().equals(this.getAuthority());
+        return Objects.equals(ua.getAuthority(), this.getAuthority())
+                || ua.getAuthority().equals(this.getAuthority());
     }
 
     @Override

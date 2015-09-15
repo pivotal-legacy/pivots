@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.pivotal.security.TokenAuthenticationService;
 import io.pivotal.security.User;
 import io.pivotal.security.UserAuthentication;
-import io.pivotal.security.UserDetailsService;
+import io.pivotal.security.PersistedUserDetailsService;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -23,12 +23,12 @@ class StatelessLoginFilter extends AbstractAuthenticationProcessingFilter {
 
     public static final String POST = "POST";
     private final TokenAuthenticationService tokenAuthenticationService;
-    private final UserDetailsService userDetailsService;
+    private final PersistedUserDetailsService userDetailsService;
 
     protected StatelessLoginFilter(
             String urlMapping,
             TokenAuthenticationService tokenAuthenticationService,
-            UserDetailsService userDetailsService,
+            PersistedUserDetailsService userDetailsService,
             AuthenticationManager authManager
     ) {
         super(new AntPathRequestMatcher(urlMapping, POST));

@@ -1,7 +1,7 @@
 package io.pivotal.pivotsapp;
 
 import io.pivotal.security.TokenAuthenticationService;
-import io.pivotal.security.UserDetailsService;
+import io.pivotal.security.PersistedUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,7 +21,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private UserDetailsService userDetailsService;
+    private PersistedUserDetailsService userDetailsService;
 
     @Autowired
     private TokenAuthenticationService tokenAuthenticationService;
@@ -71,7 +71,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected UserDetailsService userDetailsService() {
+    protected PersistedUserDetailsService userDetailsService() {
         return userDetailsService;
     }
 }
