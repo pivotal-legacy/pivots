@@ -4,6 +4,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import static java.util.Arrays.asList;
 
@@ -22,10 +23,10 @@ public class UserRepository {
         users = asList(user1, user2);
     }
 
-    public User findByUsername(String username) {
-        return users.stream()
+    public Optional<User> findByUsername(String username) {
+        return users
+                .stream()
                 .filter((u) -> u.getUsername().equals(username))
-                .findFirst()
-                .get();
+                .findFirst();
     }
 }

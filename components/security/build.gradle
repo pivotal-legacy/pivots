@@ -7,4 +7,7 @@ dependencies {
     compile "org.springframework.security:spring-security-web:3.2.7.RELEASE"
 
     testCompile project(":components/testing-utils")
+
+    testCompile "org.slf4j:slf4j-log4j12:1.7.5"
+    testCompile "org.slf4j:jcl-over-slf4j:1.7.5"
 }
