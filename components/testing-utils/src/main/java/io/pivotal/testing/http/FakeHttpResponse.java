@@ -1,4 +1,4 @@
-package io.pivotal.testing;
+package io.pivotal.testing.http;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.Cookie;

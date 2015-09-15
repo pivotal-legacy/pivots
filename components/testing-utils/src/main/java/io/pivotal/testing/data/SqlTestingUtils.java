@@ -1,4 +1,4 @@
-package io.pivotal.testing;
+package io.pivotal.testing.data;
 
 import org.postgresql.ds.PGSimpleDataSource;
 

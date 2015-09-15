@@ -9,7 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import java.util.List;
 import java.util.Optional;
 
-import static io.pivotal.testing.SqlTestingUtils.prepareTestingDataSource;
+import static io.pivotal.testing.data.SqlTestingUtils.prepareTestingDataSource;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;

@@ -1,4 +1,4 @@
-package io.pivotal.testing;
+package io.pivotal.testing.data;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
