@@ -2,6 +2,7 @@ package io.pivotal.security;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.stereotype.Service;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
@@ -12,7 +13,8 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
-public final class JwtTokenHandler {
+@Service
+public class TokenService {
 
     private static final String HMAC_ALGO = "HmacSHA256";
     private static final String SEPARATOR = ".";
@@ -20,7 +22,11 @@ public final class JwtTokenHandler {
 
     private final Mac hmac;
 
-    public JwtTokenHandler(byte[] secretKey) {
+    public TokenService() {
+        String secret = System.getenv("SERVER_SECRET");
+
+        byte[] secretKey = DatatypeConverter.parseBase64Binary(secret);
+
         try {
             hmac = Mac.getInstance(HMAC_ALGO);
             hmac.init(new SecretKeySpec(secretKey, HMAC_ALGO));
@@ -50,11 +56,7 @@ public final class JwtTokenHandler {
     public String createTokenForUser(User user) {
         byte[] userBytes = toJSON(user);
         byte[] hash = createHmac(userBytes);
-        final StringBuilder sb = new StringBuilder(170);
-        sb.append(toBase64(userBytes));
-        sb.append(SEPARATOR);
-        sb.append(toBase64(hash));
-        return sb.toString();
+        return toBase64(userBytes) + SEPARATOR + toBase64(hash);
     }
 
     private User fromJSON(final byte[] userBytes) {

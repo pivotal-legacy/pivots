@@ -5,4 +5,6 @@ dependencies {
     compile "org.springframework.security:spring-security-core:3.2.7.RELEASE"
     compile "org.springframework.security:spring-security-config:3.2.7.RELEASE"
     compile "org.springframework.security:spring-security-web:3.2.7.RELEASE"
+
+    testCompile project(":components/testing-utils")
 }

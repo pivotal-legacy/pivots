@@ -1,13 +1,11 @@
 package io.pivotal.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.bind.DatatypeConverter;
 
 import static javax.servlet.http.HttpServletResponse.SC_NO_CONTENT;
 
@@ -15,28 +13,32 @@ import static javax.servlet.http.HttpServletResponse.SC_NO_CONTENT;
 public class TokenAuthenticationService {
 
     private static final String AUTH_HEADER_NAME = "X-AUTH-TOKEN";
-
-    private final JwtTokenHandler tokenHandler;
+    private TokenService tokenService;
 
     @Autowired
-    public TokenAuthenticationService(@Value("${token.secret}") String secret) {
-        tokenHandler = new JwtTokenHandler(DatatypeConverter.parseBase64Binary(secret));
+    public TokenAuthenticationService(TokenService tokenService) {
+        this.tokenService = tokenService;
     }
 
-    public void addAuthentication(HttpServletResponse response, UserAuthentication authentication) {
-        final User user = authentication.getDetails();
-        response.addHeader(AUTH_HEADER_NAME, tokenHandler.createTokenForUser(user));
+    public void addAuthentication(HttpServletResponse response, UserAuthentication userAuthentication) {
+        User user = userAuthentication.getDetails();
+
+        response.addHeader(AUTH_HEADER_NAME, tokenService.createTokenForUser(user));
         response.setStatus(SC_NO_CONTENT);
     }
 
     public Authentication getAuthentication(HttpServletRequest request) {
-        final String token = request.getHeader(AUTH_HEADER_NAME);
+        String token = request.getHeader(AUTH_HEADER_NAME);
+
         if (token != null) {
-            final User user = tokenHandler.parseUserFromToken(token);
+
+            User user = tokenService.parseUserFromToken(token);
+
             if (user != null) {
                 return new UserAuthentication(user);
             }
         }
+
         return null;
     }
 }
