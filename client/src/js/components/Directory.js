@@ -32,7 +32,8 @@ var Directory = React.createClass({
     }
 
     return (
-      <div className='container'>
+      <div className="container">
+        <h1>Directory</h1>
         {pivotFaces}
       </div>
     );

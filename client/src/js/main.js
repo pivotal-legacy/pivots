@@ -11,8 +11,8 @@ var Login = require('./components/Login');
 var RouteNotFound = require('./components/RouteNotFound');
 
 // CSS
-require('normalize.css');
 require('./../css/main.css');
+require('bootstrap/dist/css/bootstrap.css');
 
 var routes = (
   <Route>
