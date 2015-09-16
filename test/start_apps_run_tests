@@ -1,0 +1,35 @@
+pushd server
+
+dropdb pivots_e2e
+createdb pivots_e2e
+psql -d pivots_e2e -f components/directory/sql/initial_schema.ddl
+psql -d pivots_e2e -f components/directory/sql/seed_data.sql
+
+./gradlew
+
+server_port=8000
+client_port=9000
+
+DATABASE_URL=jdbc:postgresql://localhost/pivots_e2e \
+PORT=$server_port \
+SERVER_SECRET=some_very_long_secret \
+java -jar applications/pivots/build/libs/applications/pivots.jar &
+
+JAVA_SERVER_PID=$!
+
+popd
+
+pushd client
+
+API_SERVER=http://localhost:$server_port \
+CLIENT_SERVER_PORT=$client_port \
+gulp &
+
+CLIENT_SERVER_PID=$!
+
+popd
+
+./gradlew test
+
+kill $JAVA_SERVER_PID
+kill $CLIENT_SERVER_PID
