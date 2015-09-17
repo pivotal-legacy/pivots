@@ -4,7 +4,7 @@ var LocalStorage = {
   },
 
   get: function(key) {
-    window.localStorage.getItem(key);
+    return window.localStorage.getItem(key);
   }
 };
 
