@@ -4,6 +4,7 @@ var gulp = require('gulp');
 var del = require('del');
 var webpack = require('webpack-stream');
 var connect = require('gulp-connect');
+var jasmine = require('gulp-jasmine-browser');
 
 function buildJs(config) {
   return gulp.src('src/js/main.js')
@@ -30,6 +31,13 @@ gulp.task('connect', function () {
 
 gulp.task('clean', function () {
   return del(['dist']);
+});
+
+gulp.task('jasmine', function () {
+  return gulp.src(['spec/**/*Spec.js'])
+    .pipe(webpack({output: {filename: 'spec.js'}}))
+    .pipe(jasmine.specRunner({console: true}))
+    .pipe(jasmine.headless());
 });
 
 gulp.task('build', ['clean', 'js']);

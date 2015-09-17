@@ -1,8 +1,6 @@
 var Q = require('Q'),
   Request = require('superagent'),
   LocalStorage = require('../utils/LocalStorage'),
-  contentType = 'application/json',
-  accept = 'application/json',
   API_SERVER = require('../constants/EnvConstants').API_SERVER;
 
 var Api = {
@@ -11,8 +9,8 @@ var Api = {
 
     return Q.Promise(function(resolve, reject) {
       Request.get(url)
-        .set('Content-Type', contentType)
-        .set('Accept', accept)
+        .set('Content-Type', 'application/json')
+        .set('Accept', 'application/json')
         .set('X-AUTH-TOKEN', LocalStorage.get('savedJwt'))
         .end(function (err, response) {
           if (response.ok) {
@@ -29,8 +27,8 @@ var Api = {
 
     return Q.Promise(function(resolve, reject) {
       Request.post(url)
-        .set('Content-Type', contentType)
-        .set('Accept', accept)
+        .set('Content-Type', 'application/json')
+        .set('Accept', 'application/json')
         .send(data)
         .end(function (err, response) {
           if (response.ok) {

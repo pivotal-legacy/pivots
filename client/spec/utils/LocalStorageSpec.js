@@ -16,7 +16,7 @@ describe('LocalStorage', function () {
       }
     };
 
-    Object.defineProperty(window, 'localStorage', {value: fakeLocalStorage});
+    window.localStorage = fakeLocalStorage;
   });
 
   it('sets an item into local storage', function () {
