@@ -35,3 +35,13 @@ In this project, we use several environment files:
 ```
 
 All three environment files are intentionally ignored by version control.
+
+## Deploying
+
+Do the deploy from /dist:
+
+```
+$ . .env.staging
+$ gulp build:dist
+$ cd dist
+$ cf push pivots-client-development
