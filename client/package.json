@@ -31,8 +31,5 @@
   },
   "scripts": {
     "test": "jest"
-  },
-  "jest": {
-    "testDirectoryName": "test"
   }
 }
