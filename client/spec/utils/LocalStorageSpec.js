@@ -1,7 +1,5 @@
-jest.dontMock('../LocalStorage');
-
 describe('LocalStorage', function () {
-  var LocalStorage = require('../LocalStorage');
+  var LocalStorage = require('../../src/js/utils/LocalStorage');
   var fakeLocalStorage;
 
   beforeEach(function () {
