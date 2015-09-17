@@ -2,6 +2,7 @@
   "name": "pivots-client",
   "version": "0.0.0",
   "repository": "https://github.com/pivotal-tokyo/pivots",
+  "license": "MIT",
   "description": "A React client for Pivots",
   "devDependencies": {
     "babel-loader": "^5.3.2",
