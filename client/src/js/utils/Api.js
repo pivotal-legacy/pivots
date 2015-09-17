@@ -1,5 +1,6 @@
 var Q = require('Q'),
   Request = require('superagent'),
+  LocalStorage = require('../utils/LocalStorage'),
   contentType = 'application/json',
   accept = 'application/json',
   API_SERVER = require('../constants/EnvConstants').API_SERVER;
@@ -12,7 +13,7 @@ var Api = {
       Request.get(url)
         .set('Content-Type', contentType)
         .set('Accept', accept)
-        .set('X-AUTH-TOKEN', window.localStorage.getItem('savedJwt'))
+        .set('X-AUTH-TOKEN', LocalStorage.get('savedJwt'))
         .end(function (err, response) {
           if (response.ok) {
             resolve(response);

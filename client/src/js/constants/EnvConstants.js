@@ -1,3 +1,3 @@
 module.exports = {
-  API_SERVER: __API_SERVER__
+  API_SERVER: (typeof(__API_SERVER__) !== 'undefined' ? __API_SERVER__ : 'foo')
 };
