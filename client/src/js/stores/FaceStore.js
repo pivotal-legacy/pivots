@@ -13,7 +13,6 @@ var FaceStore = Reflux.createStore({
         this.faceList = response.body;
         this.trigger(this.faceList);
       }.bind(this))
-      .fail(function () {})
       .done();
   },
 
