@@ -1,7 +1,8 @@
 var Reflux = require('reflux');
 
 var FaceActions = Reflux.createActions([
-  'fetchAll'
+  'fetchAll',
+  'search'
 ]);
 
 module.exports = FaceActions;

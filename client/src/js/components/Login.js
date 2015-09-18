@@ -1,10 +1,8 @@
-var React = require('react');
+var React = require('react/addons');
 var Reflux = require('reflux');
 
 var UserActions = require('../actions/UserActions');
 var UserStore = require('../stores/UserStore');
-
-require('react/addons');
 
 var Login = React.createClass({
   mixins: [
