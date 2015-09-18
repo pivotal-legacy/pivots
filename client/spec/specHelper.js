@@ -1,0 +1,50 @@
+require('jasmine-ajax');
+
+jasmine.Ajax.install();
+
+window.localStorage = {
+  store: {},
+  getItem: function (key) {
+    return this.store[key];
+  },
+  setItem: function (key, value) {
+    this.store[key] = value;
+  },
+  clear: function () {
+    this.store = {};
+  }
+};
+
+var buildFakePromise = function () {
+  var realSuccessCallback;
+  var realFailureCallback;
+
+  return {
+    then: function (f) {
+      realSuccessCallback = f;
+      return this;
+    },
+
+    fail: function (f) {
+      realFailureCallback = f;
+      return this;
+    },
+
+    done: function () {
+    },
+
+    resolve: function (payload) {
+      return realSuccessCallback(payload);
+    },
+
+    reject: function (payload) {
+      return realFailureCallback(payload);
+    }
+  }
+};
+
+var SpecHelper = {
+  buildFakePromise: buildFakePromise
+};
+
+module.exports = SpecHelper;

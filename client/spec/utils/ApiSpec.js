@@ -5,8 +5,6 @@ describe('Api', function () {
   var onFailure;
 
   beforeEach(function () {
-    jasmine.Ajax.install();
-
     onSuccess = jasmine.createSpy('onSuccess');
     onFailure = jasmine.createSpy('onFailure');
   });
