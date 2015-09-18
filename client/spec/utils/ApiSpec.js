@@ -15,22 +15,8 @@ describe('Api', function () {
       .catch(onFailure);
 
     request = jasmine.Ajax.requests.mostRecent();
+
     expect(request.url).toBe('base-url/employees');
     expect(request.method).toBe('GET');
-
-    var successResponse = {
-      success: {
-        status: 200,
-        responseText: '[{"id": 1}, {"id": 2}]'
-      }
-    };
-
-    //request.respondWith(successResponse);
-    //
-    //expect(onSuccess).toHaveBeenCalled();
-
-    //expect(successArgs.length).toEqual(1);
-    //expect(successArgs[0]).toEqual('[{"id": 1}, {"id": 2}]');
   });
-})
-;
+});

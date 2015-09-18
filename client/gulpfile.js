@@ -5,6 +5,7 @@ var del = require('del');
 var webpack = require('webpack-stream');
 var connect = require('gulp-connect');
 var jasmine = require('gulp-jasmine-browser');
+var eslint = require('gulp-eslint');
 
 function buildJs(config) {
   return gulp.src('src/js/main.js')
@@ -33,20 +34,25 @@ gulp.task('clean', function () {
   return del(['dist']);
 });
 
-gulp.task('jasmine:ci', function () {
+gulp.task('jasmine:ci', ['eslint'], function () {
   return gulp.src(['spec/**/*Spec.js'])
     .pipe(webpack({output: {filename: 'spec.js'}}))
     .pipe(jasmine.specRunner({console: true}))
     .pipe(jasmine.headless());
 });
 
-gulp.task('jasmine', function () {
-  var filesForTest = ['spec/**/*Spec.js'];
-
-  return gulp.src(filesForTest)
+gulp.task('jasmine', ['eslint'], function () {
+  return gulp.src(['spec/**/*Spec.js'])
     .pipe(webpack({watch: true, output: {filename: 'spec.js'}}))
     .pipe(jasmine.specRunner())
     .pipe(jasmine.server({port: 8888}));
+});
+
+gulp.task('eslint', function () {
+  return gulp.src(['spec/**/*.js', 'src/js/**/*.js'])
+    .pipe(eslint())
+    .pipe(eslint.format())
+    .pipe(eslint.failOnError());
 });
 
 gulp.task('build', ['clean', 'js']);

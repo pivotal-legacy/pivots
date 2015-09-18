@@ -40,7 +40,7 @@ var buildFakePromise = function () {
     reject: function (payload) {
       return realFailureCallback(payload);
     }
-  }
+  };
 };
 
 var SpecHelper = {
