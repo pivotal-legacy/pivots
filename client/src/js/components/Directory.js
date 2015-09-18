@@ -71,7 +71,7 @@ var Directory = React.createClass({
           </div>
         </div>
 
-        <form onSubmit={this.handleSubmit}>
+        <form>
           <input id="search_input" type="text" placeholder="search" valueLink={{requestChange: this.handleChange}} />
         </form>
 
