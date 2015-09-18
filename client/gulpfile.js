@@ -33,11 +33,20 @@ gulp.task('clean', function () {
   return del(['dist']);
 });
 
-gulp.task('jasmine', function () {
+gulp.task('jasmine:ci', function () {
   return gulp.src(['spec/**/*Spec.js'])
     .pipe(webpack({output: {filename: 'spec.js'}}))
     .pipe(jasmine.specRunner({console: true}))
     .pipe(jasmine.headless());
+});
+
+gulp.task('jasmine', function () {
+  var filesForTest = ['spec/**/*Spec.js'];
+
+  return gulp.src(filesForTest)
+    .pipe(webpack({watch: true, output: {filename: 'spec.js'}}))
+    .pipe(jasmine.specRunner())
+    .pipe(jasmine.server({port: 8888}));
 });
 
 gulp.task('build', ['clean', 'js']);
