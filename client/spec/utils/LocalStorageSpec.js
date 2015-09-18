@@ -14,4 +14,14 @@ describe('LocalStorage', function () {
 
     expect(LocalStorage.get('jwt-token')).toEqual('some-secret-token');
   });
+
+  it('removes stored items', function() {
+    window.localStorage.setItem('jwt-token', 'secret-token');
+
+    expect(window.localStorage.getItem('jwt-token')).not.toEqual(null);
+
+    LocalStorage.remove('jwt-token');
+
+    expect(window.localStorage.getItem('jwt-token')).toEqual(null);
+  });
 });

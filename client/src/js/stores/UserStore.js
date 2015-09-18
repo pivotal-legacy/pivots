@@ -12,16 +12,12 @@ var UserStore = Reflux.createStore({
         LocalStorage.set('savedJwt', res.headers['x-auth-token']);
         this.trigger();
       }.bind(this))
-      .fail(function() {})
       .done();
   },
 
-  getToken: function() {
-    return window.localStorage.getItem('savedJwt');
-  },
-
-  isLoggedIn: function() {
-    return (this.getToken() !== null);
+  logout: function() {
+    LocalStorage.remove('savedJwt');
+    this.trigger();
   }
 });
 

@@ -21,4 +21,14 @@ describe('UserStore', function () {
       expect(LocalStorage.set).toHaveBeenCalledWith('savedJwt', authToken);
     });
   });
+
+  describe('#logout', function() {
+    it('clears LocalStorage', function() {
+      spyOn(LocalStorage, 'remove');
+
+      UserStore.logout();
+
+      expect(LocalStorage.remove).toHaveBeenCalledWith('savedJwt');
+    });
+  });
 });

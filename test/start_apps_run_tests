@@ -29,6 +29,8 @@ CLIENT_SERVER_PID=$!
 
 popd
 
+sleep 5
+
 ./gradlew test
 
 kill $JAVA_SERVER_PID
