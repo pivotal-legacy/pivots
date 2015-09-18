@@ -22,6 +22,20 @@ Finally, run `gulp` and visit `localhost:8080`:
 $ gulp
 ```
 
+## Running the tests
+
+We use jasmine and depend on phantomjs which you'll need to install using brew
+
+```
+$ brew install phantomjs
+```
+
+Run the tests:
+
+```
+$ gulp jasmine
+```
+
 ## Environment Files
 
 The client application depends on an environment file to set the API server url. Look in `.env.example` to see what variables are required.
