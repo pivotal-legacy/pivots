@@ -1,6 +1,6 @@
 describe('FaceStore', function () {
   var FaceStore = require('../../src/js/stores/FaceStore');
-  var whitney, danny;
+  var whitney, danny, markM, markD;
 
   beforeEach(function () {
     whitney = {firstName: 'Whitney', lastName: 'Schaefer'};
