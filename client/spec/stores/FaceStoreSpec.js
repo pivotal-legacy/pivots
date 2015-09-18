@@ -1,6 +1,3 @@
-var React = require('react/addons');
-var Reflux = require('reflux');
-
 describe('FaceStore', function () {
   var FaceStore = require('../../src/js/stores/FaceStore');
   var whitney, danny;
@@ -62,7 +59,7 @@ describe('FaceStore', function () {
     expect(FaceStore.trigger).toHaveBeenCalledWith([danny, whitney, markM, markD]);
   });
 
-  it('returns multiple pivots if search matches multple names', function() {
+  it('returns multiple pivots if search matches multiple names', function() {
     spyOn(FaceStore, 'trigger');
 
     FaceStore.search('Mark');
