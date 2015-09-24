@@ -4,8 +4,10 @@ require('es6-promise').polyfill();
 describe('Api', function () {
   var Api = require('../../src/js/utils/Api');
   var LocalStorage = require('../../src/js/utils/LocalStorage');
+  var EnvConstants = require('../../src/js/constants/EnvConstants');
 
   beforeEach(function () {
+    spyOn(EnvConstants, 'getApiServerUrl').and.returnValue('fake-server-url');
     jasmine.Ajax.install();
   });
 
@@ -21,7 +23,7 @@ describe('Api', function () {
     setTimeout(function () {
       var request = jasmine.Ajax.requests.mostRecent();
 
-      expect(request.url).toBe('base-url/employees');
+      expect(request.url).toBe('fake-server-url/employees');
       expect(request.method).toBe('GET');
       expect(request.requestHeaders['Accept']).toBe('application/json');
       expect(request.requestHeaders['X-AUTH-TOKEN']).toBe('secret-jwt-token');
@@ -36,7 +38,7 @@ describe('Api', function () {
     setTimeout(function () {
       var request = jasmine.Ajax.requests.mostRecent();
 
-      expect(request.url).toBe('base-url/login');
+      expect(request.url).toBe('fake-server-url/login');
       expect(request.method).toBe('POST');
       expect(request.requestHeaders['Accept']).toBe('application/json');
       expect(request.requestHeaders['Content-Type']).toBe('application/json');
