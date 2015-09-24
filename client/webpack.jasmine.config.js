@@ -1,6 +1,7 @@
 'use strict';
 
 var webpack = require('webpack');
+//noinspection JSUnresolvedFunction
 var envPlugin = new webpack.DefinePlugin({
   __API_SERVER__: JSON.stringify(process.env.API_SERVER)
 });
