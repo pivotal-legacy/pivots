@@ -65,7 +65,7 @@ var Directory = React.createClass({
             <h1>Directory</h1>
           </div>
           <div className="col-md-2">
-            <a onClick={this.handleLogout}>Logout</a>
+            <a onClick={this.handleLogout} href="#">Logout</a>
           </div>
         </div>
 
