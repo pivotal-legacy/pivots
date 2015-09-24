@@ -2,6 +2,7 @@
 
 var Reflux = require('reflux');
 var React = require('react/addons');
+var Router = require('react-router');
 var _ = require('lodash');
 var Face = require('./Face');
 var FaceStore = require('../stores/FaceStore');
@@ -14,12 +15,9 @@ var Directory = React.createClass({
   mixins: [
     React.addons.LinkedStateMixin,
     Reflux.connect(FaceStore, 'faceStore'),
-    Reflux.listenTo(UserStore, 'onUserStoreChange')
+    Reflux.listenTo(UserStore, 'onUserStoreChange'),
+    Router.Navigation
   ],
-
-  contextTypes: {
-    router: React.PropTypes.func
-  },
 
   statics: {
     willTransitionTo: function (transition) {

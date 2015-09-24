@@ -2,6 +2,7 @@
 
 var React = require('react/addons');
 var Reflux = require('reflux');
+var Router = require('react-router');
 
 var UserActions = require('../actions/UserActions');
 var UserStore = require('../stores/UserStore');
@@ -9,12 +10,9 @@ var UserStore = require('../stores/UserStore');
 var Login = React.createClass({
   mixins: [
     React.addons.LinkedStateMixin,
-    Reflux.listenTo(UserStore, 'onUserStoreChange')
+    Reflux.listenTo(UserStore, 'onUserStoreChange'),
+    Router.Navigation
   ],
-
-  contextTypes: {
-    router: React.PropTypes.func
-  },
 
   getInitialState: function() {
     return {username: undefined, password: undefined};
