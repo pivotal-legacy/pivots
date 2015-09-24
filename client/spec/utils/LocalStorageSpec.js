@@ -1,3 +1,5 @@
+'use strict';
+
 require('../specHelper');
 
 describe('LocalStorage', function () {

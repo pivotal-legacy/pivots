@@ -1,3 +1,5 @@
+'use strict';
+
 describe('FaceStore', function () {
   var FaceStore = require('../../src/js/stores/FaceStore');
   var whitney, danny, markM, markD;

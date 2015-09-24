@@ -1,3 +1,5 @@
+'use strict';
+
 var axios = require('axios');
 var LocalStorage = require('../utils/LocalStorage');
 var EnvConstants = require('../constants/EnvConstants');

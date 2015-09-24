@@ -1,9 +1,12 @@
+'use strict';
+
 var React = require('react');
 
 var Face = React.createClass({
   render: function () {
     var pivot = this.props.pivot;
 
+    //noinspection JSUnresolvedVariable
     return (
       <div className='col-md-3'>
         <a>

@@ -1,3 +1,5 @@
+'use strict';
+
 var React = require('react/addons');
 var Reflux = require('reflux');
 
@@ -25,6 +27,7 @@ var Login = React.createClass({
   handleSubmit: function (e) {
     e.preventDefault();
 
+    //noinspection JSUnresolvedFunction
     UserActions.login(this.state.username, this.state.password);
   },
 
@@ -36,11 +39,18 @@ var Login = React.createClass({
         <form className="form-inline" onSubmit={this.handleSubmit}>
           <div className="form-group">
             <label className="sr-only" htmlFor="username">Username</label>
-            <input type="text" className="form-control" id="username" placeholder="Username" valueLink={this.linkState('username')} />
+            <input type="text"
+                   id="username" placeholder="Username"
+                   className="form-control"
+                   valueLink={this.linkState('username')} />
           </div>
           <div className="form-group">
             <label className="sr-only" htmlFor="password">Password</label>
-            <input type="password" className="form-control" id="password" placeholder="Password" valueLink={this.linkState('password')} />
+            <input type="password"
+                   id="password"
+                   className="form-control"
+                   placeholder="Password"
+                   valueLink={this.linkState('password')} />
           </div>
           <button type="submit" className="btn btn-default">Sign in</button>
         </form>

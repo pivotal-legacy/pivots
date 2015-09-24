@@ -1,3 +1,5 @@
+'use strict';
+
 var Reflux = require('reflux');
 var FaceActions = require('../actions/FaceActions');
 var Api = require('../utils/Api');
