@@ -2,12 +2,14 @@ var axios = require('axios');
 var LocalStorage = require('../utils/LocalStorage');
 var EnvConstants = require('../constants/EnvConstants');
 
-var Api = {
-  get: function(route) {
-    var url = EnvConstants.getApiServerUrl() + route;
+function buildUrl(path) {
+  return EnvConstants.getApiServerUrl() + path;
+}
 
+var Api = {
+  get: function(path) {
     return axios({
-      url: url,
+      url: buildUrl(path),
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -17,10 +19,8 @@ var Api = {
   },
 
   post: function(path, data) {
-    var url = EnvConstants.getApiServerUrl() + path;
-
     return axios({
-      url: url,
+      url: buildUrl(path),
       method: 'POST',
       headers: {
         'Accept': 'application/json',
