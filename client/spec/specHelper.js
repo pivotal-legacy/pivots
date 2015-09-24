@@ -1,7 +1,3 @@
-require('jasmine-ajax');
-
-jasmine.Ajax.install();
-
 window.localStorage = {
   store: {},
   getItem: function (key) {

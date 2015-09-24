@@ -1,22 +1,48 @@
+require('jasmine-ajax');
+require('es6-promise').polyfill();
+
 describe('Api', function () {
-  require('jasmine-ajax');
   var Api = require('../../src/js/utils/Api');
-  var onSuccess;
-  var onFailure;
+  var LocalStorage = require('../../src/js/utils/LocalStorage');
 
   beforeEach(function () {
-    onSuccess = jasmine.createSpy('onSuccess');
-    onFailure = jasmine.createSpy('onFailure');
+    jasmine.Ajax.install();
   });
 
-  it('sends GET requests', function () {
-    Api.get('/employees')
-      .then(onSuccess)
-      .catch(onFailure);
+  afterEach(function () {
+    jasmine.Ajax.uninstall();
+  });
 
-    request = jasmine.Ajax.requests.mostRecent();
+  it('sends GET requests', function (done) {
+    spyOn(LocalStorage, 'get').and.returnValue('secret-jwt-token');
 
-    expect(request.url).toBe('base-url/employees');
-    expect(request.method).toBe('GET');
+    Api.get('/employees');
+
+    setTimeout(function () {
+      var request = jasmine.Ajax.requests.mostRecent();
+
+      expect(request.url).toBe('base-url/employees');
+      expect(request.method).toBe('GET');
+      expect(request.requestHeaders['Accept']).toBe('application/json');
+      expect(request.requestHeaders['X-AUTH-TOKEN']).toBe('secret-jwt-token');
+
+      done();
+    }, 0);
+  });
+
+  it('sends POST requests', function (done) {
+    Api.post('/login', {username: 'username', password: 'password'});
+
+    setTimeout(function () {
+      var request = jasmine.Ajax.requests.mostRecent();
+
+      expect(request.url).toBe('base-url/login');
+      expect(request.method).toBe('POST');
+      expect(request.requestHeaders['Accept']).toBe('application/json');
+      expect(request.requestHeaders['Content-Type']).toBe('application/json');
+      expect(request.data()).toEqual({username: 'username', password: 'password'});
+
+      done();
+    }, 0);
   });
 });

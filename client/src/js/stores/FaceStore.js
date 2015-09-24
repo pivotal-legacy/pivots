@@ -10,10 +10,9 @@ var FaceStore = Reflux.createStore({
   fetchAll: function () {
     Api.get('/employees')
       .then(function (response) {
-        this.faceList = response.body;
+        this.faceList = response.data;
         this.trigger(this.faceList);
-      }.bind(this))
-      .done();
+      }.bind(this));
   },
 
   search: function (searchName) {
