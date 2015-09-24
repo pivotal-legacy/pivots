@@ -27,7 +27,6 @@ gulp.task('watch', ['build'], function () {
 });
 
 gulp.task('connect', ['build'], function () {
-  //noinspection JSUnresolvedVariable
   connect.server({root: 'dist', livereload: true, port: process.env.CLIENT_SERVER_PORT || 8080 });
 });
 

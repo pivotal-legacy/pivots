@@ -27,7 +27,6 @@ var Login = React.createClass({
   handleSubmit: function (e) {
     e.preventDefault();
 
-    //noinspection JSUnresolvedFunction
     UserActions.login(this.state.username, this.state.password);
   },
 

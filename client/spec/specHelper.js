@@ -1,6 +1,5 @@
 'use strict';
 
-//noinspection JSUnusedGlobalSymbols
 window.localStorage = {
   store: {},
   getItem: function (key) {
@@ -18,7 +17,6 @@ var buildFakePromise = function () {
   var realSuccessCallback;
   var realFailureCallback;
 
-  //noinspection JSUnusedGlobalSymbols
   return {
     then: function (f) {
       realSuccessCallback = f;

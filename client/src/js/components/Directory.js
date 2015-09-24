@@ -38,14 +38,12 @@ var Directory = React.createClass({
   },
 
   componentDidMount: function () {
-    //noinspection JSUnresolvedFunction
     FaceActions.fetchAll();
   },
 
   handleLogout: function (e) {
     e.preventDefault();
 
-    //noinspection JSUnresolvedFunction
     UserActions.logout();
   },
 
