@@ -23,7 +23,7 @@ gulp.task('js:dist', ['clean', 'eslint'], function () {
 });
 
 gulp.task('watch', ['build'], function () {
-  return gulp.watch(['src/js/**/*', 'src/css/**/*'], ['build'])
+  return gulp.watch(['src/js/**/*', 'src/css/**/*'], ['build']);
 });
 
 gulp.task('connect', ['build'], function () {
@@ -49,7 +49,7 @@ gulp.task('jasmine', ['eslint'], function () {
 });
 
 gulp.task('eslint', ['clean'], function () {
-  return gulp.src(['spec/**/*.js', 'src/js/**/*.js'])
+  return gulp.src(['*.js', 'spec/**/*.js', 'src/js/**/*.js'])
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failOnError());
