@@ -14,12 +14,16 @@ var Login = React.createClass({
     Router.Navigation
   ],
 
+  contextTypes: {
+    router: React.PropTypes.func
+  },
+
   getInitialState: function() {
     return {username: undefined, password: undefined};
   },
 
   onUserStoreChange: function () {
-    this.context.router.transitionTo('/');
+    this.transitionTo('/');
   },
 
   handleSubmit: function (e) {
@@ -33,11 +37,13 @@ var Login = React.createClass({
       <div className="container">
         <h1>Login</h1>
 
-        <form className="form-inline" onSubmit={this.handleSubmit}>
+        <form className="form-inline" onSubmit={this.handleSubmit} ref="submit">
           <div className="form-group">
             <label className="sr-only" htmlFor="username">Username</label>
             <input type="text"
-                   id="username" placeholder="Username"
+                   id="username"
+                   placeholder="Username"
+                   ref="username"
                    className="form-control"
                    valueLink={this.linkState('username')} />
           </div>
@@ -45,6 +51,7 @@ var Login = React.createClass({
             <label className="sr-only" htmlFor="password">Password</label>
             <input type="password"
                    id="password"
+                   ref="password"
                    className="form-control"
                    placeholder="Password"
                    valueLink={this.linkState('password')} />
