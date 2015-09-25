@@ -1,4 +1,4 @@
-var FakeLocalStorage = {
+let FakeLocalStorage = {
   store: {},
   getItem: (key) => {
     return this.store[key];

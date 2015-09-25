@@ -1,4 +1,4 @@
-import SpecHelper from '../specHelper';
+import FakePromise from '../support/FakePromise';
 import Api from '../../src/js/utils/Api';
 import AuthStore from '../../src/js/stores/AuthStore';
 import LocalStorage from '../../src/js/utils/LocalStorage';
@@ -6,8 +6,8 @@ import LocalStorage from '../../src/js/utils/LocalStorage';
 describe('AuthStore', () => {
   describe('#login', () => {
     it('makes a request to Api and sets the returned token in LocalStore', () => {
-      var fakePromise = SpecHelper.buildFakePromise();
-      var authToken = 'token-returned-from-api';
+      let fakePromise = new FakePromise();
+      let authToken = 'token-returned-from-api';
 
       spyOn(Api, 'post').and.returnValue(fakePromise);
       spyOn(LocalStorage, 'set');

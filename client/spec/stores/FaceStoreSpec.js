@@ -1,5 +1,5 @@
 import FaceStore from '../../src/js/stores/FaceStore';
-import SpecHelper from '../specHelper';
+import FakePromise from '../support/FakePromise';
 import Api from '../../src/js/utils/Api';
 
 describe('FaceStore', () => {
@@ -7,7 +7,7 @@ describe('FaceStore', () => {
 
   describe('#fetchAll', () => {
     it('makes a request to Api', () => {
-      let fakePromise = SpecHelper.buildFakePromise();
+      let fakePromise = new FakePromise();
       spyOn(Api, 'get').and.returnValue(fakePromise);
       spyOn(FaceStore, 'trigger');
 

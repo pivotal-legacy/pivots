@@ -1,6 +1,6 @@
-var buildFakePromise = () => {
-  var realSuccessCallback;
-  var realFailureCallback;
+export default () => {
+  let realSuccessCallback;
+  let realFailureCallback;
 
   return {
     then: (f) => {
@@ -22,9 +22,3 @@ var buildFakePromise = () => {
     }
   };
 };
-
-var SpecHelper = {
-  buildFakePromise: buildFakePromise
-};
-
-module.exports = SpecHelper;
