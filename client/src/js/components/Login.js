@@ -1,9 +1,9 @@
-var React = require('react/addons');
-var Reflux = require('reflux');
-var Router = require('react-router');
+import React from 'react/addons';
+import Reflux from 'reflux';
+import Router from 'react-router';
 
-var AuthActions = require('../actions/AuthActions');
-var AuthStore = require('../stores/AuthStore');
+import AuthActions from '../actions/AuthActions';
+import AuthStore from '../stores/AuthStore';
 
 var Login = React.createClass({
   mixins: [

@@ -1,12 +1,12 @@
-var React = require('react');
-var ReactRouter = require('react-router');
+import React from 'react';
+import ReactRouter from 'react-router';
 var Router = ReactRouter.Router;
 var Route = ReactRouter.Route;
 
-var Directory = require('./components/Directory');
-var Login = require('./components/Login');
-var RouteNotFound = require('./components/RouteNotFound');
-var LocalStorage = require('./utils/LocalStorage');
+import Directory from './components/Directory';
+import Login from './components/Login';
+import RouteNotFound from './components/RouteNotFound';
+import LocalStorage from './utils/LocalStorage';
 
 // CSS
 require('../css/main.css');

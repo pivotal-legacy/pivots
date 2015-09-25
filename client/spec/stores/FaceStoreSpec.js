@@ -1,12 +1,13 @@
-describe('FaceStore', function () {
-  var FaceStore = require('../../src/js/stores/FaceStore');
-  var SpecHelper = require('../specHelper');
-  var Api = require('../../src/js/utils/Api');
-  var whitney, danny, markM, markD;
+import FaceStore from '../../src/js/stores/FaceStore';
+import SpecHelper from '../specHelper';
+import Api from '../../src/js/utils/Api';
 
-  describe('#fetchAll', function () {
-    it('makes a request to Api', function () {
-      var fakePromise = SpecHelper.buildFakePromise();
+describe('FaceStore', () => {
+  let whitney, danny, markM, markD;
+
+  describe('#fetchAll', () => {
+    it('makes a request to Api', () => {
+      let fakePromise = SpecHelper.buildFakePromise();
       spyOn(Api, 'get').and.returnValue(fakePromise);
       spyOn(FaceStore, 'trigger');
 
@@ -14,7 +15,7 @@ describe('FaceStore', function () {
 
       expect(Api.get).toHaveBeenCalledWith('/employees');
 
-      var faces = [{name: 'Danny'}];
+      let faces = [{name: 'Danny'}];
       fakePromise.resolve({data: faces});
 
       expect(FaceStore.faces).toEqual(faces);
@@ -22,8 +23,8 @@ describe('FaceStore', function () {
     });
   });
 
-  describe('#search', function () {
-    beforeEach(function () {
+  describe('#search', () => {
+    beforeEach(() => {
       whitney = {firstName: 'Whitney', lastName: 'Schaefer'};
       danny = {firstName: 'Danny', lastName: 'Burkes'};
       markM = {firstName: 'Mark', lastName: 'Macdonals'};
@@ -32,7 +33,7 @@ describe('FaceStore', function () {
       FaceStore.faces = [danny, whitney, markM, markD];
     });
 
-    it('filters faces by first name', function () {
+    it('filters faces by first name', () => {
       spyOn(FaceStore, 'trigger');
 
       FaceStore.search('Danny');
@@ -40,7 +41,7 @@ describe('FaceStore', function () {
       expect(FaceStore.trigger).toHaveBeenCalledWith([danny]);
     });
 
-    it('filters faces by first name', function () {
+    it('filters faces by first name', () => {
       spyOn(FaceStore, 'trigger');
 
       FaceStore.search('Dan');
@@ -48,7 +49,7 @@ describe('FaceStore', function () {
       expect(FaceStore.trigger).toHaveBeenCalledWith([danny]);
     });
 
-    it('filters by last name', function () {
+    it('filters by last name', () => {
       spyOn(FaceStore, 'trigger');
 
       FaceStore.search('Schaefer');
@@ -56,7 +57,7 @@ describe('FaceStore', function () {
       expect(FaceStore.trigger).toHaveBeenCalledWith([whitney]);
     });
 
-    it('is case insensitive', function () {
+    it('is case insensitive', () => {
       spyOn(FaceStore, 'trigger');
 
       FaceStore.search('danny');
@@ -64,7 +65,7 @@ describe('FaceStore', function () {
       expect(FaceStore.trigger).toHaveBeenCalledWith([danny]);
     });
 
-    it('returns everyone if search is a empty string', function () {
+    it('returns everyone if search is a empty string', () => {
       spyOn(FaceStore, 'trigger');
 
       FaceStore.search('');
@@ -72,7 +73,7 @@ describe('FaceStore', function () {
       expect(FaceStore.trigger).toHaveBeenCalledWith([danny, whitney, markM, markD]);
     });
 
-    it('returns everyone if search is undefined', function () {
+    it('returns everyone if search is undefined', () => {
       spyOn(FaceStore, 'trigger');
 
       FaceStore.search(undefined);
@@ -80,7 +81,7 @@ describe('FaceStore', function () {
       expect(FaceStore.trigger).toHaveBeenCalledWith([danny, whitney, markM, markD]);
     });
 
-    it('returns multiple pivots if search matches multiple names', function () {
+    it('returns multiple pivots if search matches multiple names', () => {
       spyOn(FaceStore, 'trigger');
 
       FaceStore.search('Mark');

@@ -1,11 +1,11 @@
-describe('AuthStore', function () {
-  var SpecHelper = require('../specHelper');
-  var Api = require('../../src/js/utils/Api');
-  var AuthStore = require('../../src/js/stores/AuthStore');
-  var LocalStorage = require('../../src/js/utils/LocalStorage');
+import SpecHelper from '../specHelper';
+import Api from '../../src/js/utils/Api';
+import AuthStore from '../../src/js/stores/AuthStore';
+import LocalStorage from '../../src/js/utils/LocalStorage';
 
-  describe('#login', function () {
-    it('makes a request to Api and sets the returned token in LocalStore', function () {
+describe('AuthStore', () => {
+  describe('#login', () => {
+    it('makes a request to Api and sets the returned token in LocalStore', () => {
       var fakePromise = SpecHelper.buildFakePromise();
       var authToken = 'token-returned-from-api';
 
@@ -22,8 +22,8 @@ describe('AuthStore', function () {
     });
   });
 
-  describe('#logout', function() {
-    it('clears LocalStorage', function() {
+  describe('#logout', () => {
+    it('clears LocalStorage', () => {
       spyOn(LocalStorage, 'remove');
 
       AuthStore.logout();

@@ -1,17 +1,18 @@
 require('jasmine-ajax');
 require('es6-promise').polyfill();
 
-describe('Api', function () {
-  var Api = require('../../src/js/utils/Api');
-  var LocalStorage = require('../../src/js/utils/LocalStorage');
-  var EnvConstants = require('../../src/js/constants/EnvConstants');
+import Api from '../../src/js/utils/Api';
+import LocalStorage from '../../src/js/utils/LocalStorage';
+import EnvConstants from '../../src/js/constants/EnvConstants';
 
-  beforeEach(function () {
+describe('Api', () => {
+
+  beforeEach(() => {
     spyOn(EnvConstants, 'getApiServerUrl').and.returnValue('fake-server-url');
     jasmine.Ajax.install();
   });
 
-  afterEach(function () {
+  afterEach(() => {
     jasmine.Ajax.uninstall();
   });
 
@@ -20,7 +21,7 @@ describe('Api', function () {
 
     Api.get('/employees');
 
-    setTimeout(function () {
+    setTimeout(() => {
       var request = jasmine.Ajax.requests.mostRecent();
 
       expect(request.url).toBe('fake-server-url/employees');
@@ -35,7 +36,7 @@ describe('Api', function () {
   it('sends POST requests', function (done) {
     Api.post('/login', {username: 'username', password: 'password'});
 
-    setTimeout(function () {
+    setTimeout(() => {
       var request = jasmine.Ajax.requests.mostRecent();
 
       expect(request.url).toBe('fake-server-url/login');

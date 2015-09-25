@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 
 var Face = React.createClass({
   render: function () {

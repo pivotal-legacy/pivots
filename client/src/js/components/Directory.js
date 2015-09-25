@@ -1,12 +1,12 @@
-var Reflux = require('reflux');
-var React = require('react/addons');
-var Router = require('react-router');
-var _ = require('lodash');
-var Face = require('./Face');
-var FaceStore = require('../stores/FaceStore');
-var FaceActions = require('../actions/FaceActions');
-var AuthStore = require('../stores/AuthStore');
-var AuthActions = require('../actions/AuthActions');
+import Reflux from 'reflux';
+import React from 'react/addons';
+import Router from 'react-router';
+import _ from 'lodash';
+import Face from './Face';
+import FaceStore from '../stores/FaceStore';
+import FaceActions from '../actions/FaceActions';
+import AuthStore from '../stores/AuthStore';
+import AuthActions from '../actions/AuthActions';
 
 var Directory = React.createClass({
   mixins: [

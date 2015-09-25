@@ -1,24 +1,25 @@
-describe('Login', function () {
-  var Login = require('../../src/js/components/Login');
-  var React = require('react/addons');
-  var AuthActions = require('../../src/js/actions/AuthActions');
-  var TestUtils = React.addons.TestUtils;
-  var renderedComponent;
+import Login from '../../src/js/components/Login';
+import React from 'react/addons';
+import AuthActions from '../../src/js/actions/AuthActions';
 
-  beforeEach(function() {
+describe('Login', () => {
+  const TestUtils = React.addons.TestUtils;
+  let renderedComponent;
+
+  beforeEach(() => {
     renderedComponent = TestUtils.renderIntoDocument(React.createElement(Login, {}));
   });
 
-  afterEach(function () {
+  afterEach(() => {
     React.unmountComponentAtNode(React.findDOMNode(renderedComponent).parentNode);
   });
 
-  it('triggers a login user action', function () {
+  it('triggers a login user action', () => {
     spyOn(AuthActions, 'login');
 
-    var form = React.findDOMNode(renderedComponent.refs.submit);
-    var username = React.findDOMNode(renderedComponent.refs.username);
-    var password = React.findDOMNode(renderedComponent.refs.password);
+    let form = React.findDOMNode(renderedComponent.refs.submit);
+    let username = React.findDOMNode(renderedComponent.refs.username);
+    let password = React.findDOMNode(renderedComponent.refs.password);
 
     TestUtils.Simulate.change(username, {target: {value: 'user'}});
     TestUtils.Simulate.change(password, {target: {value: 'password'}});

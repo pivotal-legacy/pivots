@@ -1,41 +1,42 @@
-describe('Directory', function () {
-  var Directory = require('../../src/js/components/Directory');
-  var React = require('react/addons');
-  var AuthActions = require('../../src/js/actions/AuthActions');
-  var FaceActions = require('../../src/js/actions/FaceActions');
-  var TestUtils = React.addons.TestUtils;
-  var renderedDirectory;
+import Directory from '../../src/js/components/Directory';
+import React from 'react/addons';
+import AuthActions from '../../src/js/actions/AuthActions';
+import FaceActions from '../../src/js/actions/FaceActions';
 
-  beforeEach(function() {
+describe('Directory', () => {
+  const TestUtils = React.addons.TestUtils;
+  let renderedDirectory;
+
+  beforeEach(() => {
     spyOn(FaceActions, 'fetchAll');
 
     renderedDirectory = TestUtils.renderIntoDocument(React.createElement(Directory, {}));
   });
 
-  afterEach(function () {
+  afterEach(() => {
     React.unmountComponentAtNode(React.findDOMNode(renderedDirectory).parentNode);
   });
 
-  it('sets the initial state to an empty array', function () {
+  it('sets the initial state to an empty array', () => {
     expect(renderedDirectory.state.faceStore).toEqual([]);
   });
 
-  it('fetches all faces from the store', function () {
+  it('fetches all faces from the store', () => {
     expect(FaceActions.fetchAll).toHaveBeenCalled();
   });
 
-  it('triggers a user action when logout is clicked', function () {
+  it('triggers a user action when logout is clicked', () => {
     spyOn(AuthActions, 'logout');
-    var logoutButton = React.findDOMNode(renderedDirectory.refs.logout);
+    let logoutButton = React.findDOMNode(renderedDirectory.refs.logout);
 
     TestUtils.Simulate.click(logoutButton);
 
     expect(AuthActions.logout).toHaveBeenCalled();
   });
 
-  it('triggers a face action when the search input value is changed', function() {
+  it('triggers a face action when the search input value is changed', () => {
     spyOn(FaceActions, 'search');
-    var searchInput = React.findDOMNode(renderedDirectory.refs.search);
+    let searchInput = React.findDOMNode(renderedDirectory.refs.search);
 
     searchInput.value = 'Danny';
     TestUtils.Simulate.change(searchInput);

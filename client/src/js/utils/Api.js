@@ -1,6 +1,6 @@
-var axios = require('axios');
-var LocalStorage = require('../utils/LocalStorage');
-var EnvConstants = require('../constants/EnvConstants');
+import axios from 'axios';
+import LocalStorage from '../utils/LocalStorage';
+import EnvConstants from '../constants/EnvConstants';
 
 function buildUrl(path) {
   return EnvConstants.getApiServerUrl() + path;

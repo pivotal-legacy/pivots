@@ -6,12 +6,12 @@ window.localStorage = {
   setItem: function (key, value) {
     this.store[key] = value;
   },
-  clear: function () {
+  clear: () => {
     this.store = {};
   }
 };
 
-var buildFakePromise = function () {
+var buildFakePromise = () => {
   var realSuccessCallback;
   var realFailureCallback;
 

@@ -1,7 +1,7 @@
-var Reflux = require('reflux');
-var AuthActions = require('../actions/AuthActions');
-var Api = require('../utils/Api');
-var LocalStorage = require('../utils/LocalStorage');
+import Reflux from 'reflux';
+import AuthActions from '../actions/AuthActions';
+import Api from '../utils/Api';
+import LocalStorage from '../utils/LocalStorage';
 
 var AuthStore = Reflux.createStore({
   listenables: [AuthActions],

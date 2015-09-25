@@ -1,4 +1,4 @@
-var Reflux = require('reflux');
+import Reflux from 'reflux';
 
 var FaceActions = Reflux.createActions([
   'fetchAll',

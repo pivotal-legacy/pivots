@@ -1,7 +1,7 @@
-var Reflux = require('reflux');
-var FaceActions = require('../actions/FaceActions');
-var Api = require('../utils/Api');
-var _ = require('lodash');
+import Reflux from 'reflux';
+import FaceActions from '../actions/FaceActions';
+import Api from '../utils/Api';
+import _ from 'lodash';
 
 var FaceStore = Reflux.createStore({
   listenables: [FaceActions],
