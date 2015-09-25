@@ -12,4 +12,4 @@ var LocalStorage = {
   }
 };
 
-module.exports = LocalStorage;
+export default LocalStorage;

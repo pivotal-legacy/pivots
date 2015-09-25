@@ -6,7 +6,7 @@ import LocalStorage from '../utils/LocalStorage';
 var AuthStore = Reflux.createStore({
   listenables: [AuthActions],
 
-  login: function (username, password) {
+  login(username, password) {
     Api.post('/login', {username: username, password: password})
       .then(function (res) {
         LocalStorage.set('savedJwt', res.headers['x-auth-token']);
@@ -14,10 +14,10 @@ var AuthStore = Reflux.createStore({
       }.bind(this));
   },
 
-  logout: function () {
+  logout() {
     LocalStorage.remove('savedJwt');
     this.trigger();
   }
 });
 
-module.exports = AuthStore;
+export default AuthStore;

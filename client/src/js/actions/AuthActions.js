@@ -5,4 +5,4 @@ var AuthActions = Reflux.createActions([
   'logout'
 ]);
 
-module.exports = AuthActions;
+export default AuthActions;

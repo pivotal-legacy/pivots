@@ -5,4 +5,4 @@ var FaceActions = Reflux.createActions([
   'search'
 ]);
 
-module.exports = FaceActions;
+export default FaceActions;

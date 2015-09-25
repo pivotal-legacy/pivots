@@ -7,11 +7,11 @@ var FaceStore = Reflux.createStore({
   listenables: [FaceActions],
   faces: [],
 
-  getInitialState: function () {
+  getInitialState() {
     return this.faces;
   },
 
-  fetchAll: function () {
+  fetchAll() {
     Api.get('/employees')
       .then(function (response) {
         this.faces = response.data;
@@ -19,7 +19,7 @@ var FaceStore = Reflux.createStore({
       }.bind(this));
   },
 
-  search: function (searchName) {
+  search(searchName) {
     if (_.isEmpty(searchName)) {
       this.trigger(this.faces);
     } else {
@@ -33,4 +33,4 @@ var FaceStore = Reflux.createStore({
   }
 });
 
-module.exports = FaceStore;
+export default FaceStore;

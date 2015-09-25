@@ -1,7 +1,7 @@
 import React from 'react';
 
 var Face = React.createClass({
-  render: function () {
+  render() {
     var pivot = this.props.pivot;
 
     return (
@@ -29,4 +29,4 @@ var Face = React.createClass({
   }
 });
 
-module.exports = Face;
+export default Face;

@@ -15,25 +15,25 @@ var Directory = React.createClass({
     Router.History
   ],
 
-  onAuthStoreChange: function () {
+  onAuthStoreChange() {
     this.history.pushState(null, '/login');
   },
 
-  componentDidMount: function () {
+  componentDidMount() {
     FaceActions.fetchAll();
   },
 
-  handleLogout: function (e) {
+  handleLogout(e) {
     e.preventDefault();
 
     AuthActions.logout();
   },
 
-  handleChange: function (newValue) {
+  handleChange(newValue) {
     FaceActions.search(newValue);
   },
 
-  render: function () {
+  render() {
     var pivotFaces = _.map(this.state.faceStore, function (pivot) {
       return (
         <Face key={pivot.id} pivot={pivot}/>
@@ -65,4 +65,4 @@ var Directory = React.createClass({
   }
 });
 
-module.exports = Directory;
+export default Directory;

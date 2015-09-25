@@ -16,17 +16,17 @@ var Login = React.createClass({
     return {username: undefined, password: undefined};
   },
 
-  onAuthStoreChange: function () {
+  onAuthStoreChange() {
     this.history.pushState(null, '/');
   },
 
-  handleSubmit: function (e) {
+  handleSubmit(e) {
     e.preventDefault();
 
     AuthActions.login(this.state.username, this.state.password);
   },
 
-  render: function () {
+  render() {
     return (
       <div className="container">
         <h1>Login</h1>
@@ -57,4 +57,4 @@ var Login = React.createClass({
   }
 });
 
-module.exports = Login;
+export default Login;

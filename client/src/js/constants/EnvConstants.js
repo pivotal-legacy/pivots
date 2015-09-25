@@ -1,5 +1,5 @@
-module.exports = {
-  getApiServerUrl: function () {
+export default {
+  getApiServerUrl() {
     return __API_SERVER__;
   }
 };
