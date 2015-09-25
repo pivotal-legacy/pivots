@@ -1,8 +1,11 @@
-require('../specHelper');
-
 import LocalStorage from '../../src/js/utils/LocalStorage';
+import FakeLocalStorage from '../support/FakeLocalStorage.js';
 
 describe('LocalStorage', () => {
+  beforeEach(() => {
+    window.localStorage = FakeLocalStorage;
+  });
+
   it('sets an item into local storage', () => {
     LocalStorage.set('jwt-token', 'some-secret-token');
 
