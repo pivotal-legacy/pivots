@@ -3,7 +3,7 @@
 describe('Login', function () {
   var Login = require('../../src/js/components/Login');
   var React = require('react/addons');
-  var UserActions = require('../../src/js/actions/UserActions');
+  var AuthActions = require('../../src/js/actions/AuthActions');
   var TestUtils = React.addons.TestUtils;
   var renderedComponent;
 
@@ -16,7 +16,7 @@ describe('Login', function () {
   });
 
   it('triggers a login user action', function () {
-    spyOn(UserActions, 'login');
+    spyOn(AuthActions, 'login');
 
     var form = React.findDOMNode(renderedComponent.refs.submit);
     var username = React.findDOMNode(renderedComponent.refs.username);
@@ -26,6 +26,6 @@ describe('Login', function () {
     TestUtils.Simulate.change(password, {target: {value: 'password'}});
     TestUtils.Simulate.submit(form);
 
-    expect(UserActions.login).toHaveBeenCalledWith('user', 'password');
+    expect(AuthActions.login).toHaveBeenCalledWith('user', 'password');
   });
 });

@@ -1,9 +1,9 @@
 'use strict';
 
-describe('UserStore', function () {
+describe('AuthStore', function () {
   var SpecHelper = require('../specHelper');
   var Api = require('../../src/js/utils/Api');
-  var UserStore = require('../../src/js/stores/UserStore');
+  var AuthStore = require('../../src/js/stores/AuthStore');
   var LocalStorage = require('../../src/js/utils/LocalStorage');
 
   describe('#login', function () {
@@ -14,7 +14,7 @@ describe('UserStore', function () {
       spyOn(Api, 'post').and.returnValue(fakePromise);
       spyOn(LocalStorage, 'set');
 
-      UserStore.login('username', 'password');
+      AuthStore.login('username', 'password');
 
       expect(Api.post).toHaveBeenCalledWith('/login', {username: 'username', password: 'password'});
 
@@ -28,7 +28,7 @@ describe('UserStore', function () {
     it('clears LocalStorage', function() {
       spyOn(LocalStorage, 'remove');
 
-      UserStore.logout();
+      AuthStore.logout();
 
       expect(LocalStorage.remove).toHaveBeenCalledWith('savedJwt');
     });

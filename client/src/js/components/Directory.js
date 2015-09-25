@@ -7,14 +7,14 @@ var _ = require('lodash');
 var Face = require('./Face');
 var FaceStore = require('../stores/FaceStore');
 var FaceActions = require('../actions/FaceActions');
-var UserStore = require('../stores/UserStore');
-var UserActions = require('../actions/UserActions');
+var AuthStore = require('../stores/AuthStore');
+var AuthActions = require('../actions/AuthActions');
 var LocalStorage = require('../utils/LocalStorage');
 
 var Directory = React.createClass({
   mixins: [
     Reflux.connect(FaceStore, 'faceStore'),
-    Reflux.listenTo(UserStore, 'onUserStoreChange'),
+    Reflux.listenTo(AuthStore, 'onAuthStoreChange'),
     Router.Navigation
   ],
 
@@ -30,7 +30,7 @@ var Directory = React.createClass({
     router: React.PropTypes.func
   },
 
-  onUserStoreChange: function () {
+  onAuthStoreChange: function () {
     this.transitionTo('/login');
   },
 
@@ -41,7 +41,7 @@ var Directory = React.createClass({
   handleLogout: function (e) {
     e.preventDefault();
 
-    UserActions.logout();
+    AuthActions.logout();
   },
 
   handleChange: function (newValue) {

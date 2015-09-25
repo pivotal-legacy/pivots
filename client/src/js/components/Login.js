@@ -4,13 +4,13 @@ var React = require('react/addons');
 var Reflux = require('reflux');
 var Router = require('react-router');
 
-var UserActions = require('../actions/UserActions');
-var UserStore = require('../stores/UserStore');
+var AuthActions = require('../actions/AuthActions');
+var AuthStore = require('../stores/AuthStore');
 
 var Login = React.createClass({
   mixins: [
     React.addons.LinkedStateMixin,
-    Reflux.listenTo(UserStore, 'onUserStoreChange'),
+    Reflux.listenTo(AuthStore, 'onAuthStoreChange'),
     Router.Navigation
   ],
 
@@ -22,14 +22,14 @@ var Login = React.createClass({
     return {username: undefined, password: undefined};
   },
 
-  onUserStoreChange: function () {
+  onAuthStoreChange: function () {
     this.transitionTo('/');
   },
 
   handleSubmit: function (e) {
     e.preventDefault();
 
-    UserActions.login(this.state.username, this.state.password);
+    AuthActions.login(this.state.username, this.state.password);
   },
 
   render: function () {

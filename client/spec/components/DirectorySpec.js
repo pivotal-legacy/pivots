@@ -3,7 +3,7 @@
 describe('Directory', function () {
   var Directory = require('../../src/js/components/Directory');
   var React = require('react/addons');
-  var UserActions = require('../../src/js/actions/UserActions');
+  var AuthActions = require('../../src/js/actions/AuthActions');
   var FaceActions = require('../../src/js/actions/FaceActions');
   var TestUtils = React.addons.TestUtils;
   var renderedDirectory;
@@ -27,12 +27,12 @@ describe('Directory', function () {
   });
 
   it('triggers a user action when logout is clicked', function () {
-    spyOn(UserActions, 'logout');
+    spyOn(AuthActions, 'logout');
     var logoutButton = React.findDOMNode(renderedDirectory.refs.logout);
 
     TestUtils.Simulate.click(logoutButton);
 
-    expect(UserActions.logout).toHaveBeenCalled();
+    expect(AuthActions.logout).toHaveBeenCalled();
   });
 
   it('triggers a face action when the search input value is changed', function() {

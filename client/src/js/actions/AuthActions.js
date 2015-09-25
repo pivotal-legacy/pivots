@@ -2,9 +2,9 @@
 
 var Reflux = require('reflux');
 
-var UserActions = Reflux.createActions([
+var AuthActions = Reflux.createActions([
   'login',
   'logout'
 ]);
 
-module.exports = UserActions;
+module.exports = AuthActions;

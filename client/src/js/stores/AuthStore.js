@@ -1,12 +1,12 @@
 'use strict';
 
 var Reflux = require('reflux');
-var UserActions = require('../actions/UserActions');
+var AuthActions = require('../actions/AuthActions');
 var Api = require('../utils/Api');
 var LocalStorage = require('../utils/LocalStorage');
 
-var UserStore = Reflux.createStore({
-  listenables: [UserActions],
+var AuthStore = Reflux.createStore({
+  listenables: [AuthActions],
 
   login: function (username, password) {
     Api.post('/login', {username: username, password: password})
@@ -22,4 +22,4 @@ var UserStore = Reflux.createStore({
   }
 });
 
-module.exports = UserStore;
+module.exports = AuthStore;
