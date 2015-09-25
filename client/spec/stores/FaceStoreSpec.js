@@ -10,7 +10,7 @@ describe('FaceStore', function () {
     markM = {firstName: 'Mark', lastName: 'Macdonals'};
     markD = {firstName: 'Mark', lastName: 'Dellilo'};
 
-    FaceStore.faceList = [danny, whitney, markM, markD];
+    FaceStore.faces = [danny, whitney, markM, markD];
   });
 
   it('filters faces by first name', function () {

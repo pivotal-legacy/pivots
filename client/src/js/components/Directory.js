@@ -13,7 +13,6 @@ var LocalStorage = require('../utils/LocalStorage');
 
 var Directory = React.createClass({
   mixins: [
-    React.addons.LinkedStateMixin,
     Reflux.connect(FaceStore, 'faceStore'),
     Reflux.listenTo(UserStore, 'onUserStoreChange'),
     Router.Navigation
@@ -29,10 +28,6 @@ var Directory = React.createClass({
 
   contextTypes: {
     router: React.PropTypes.func
-  },
-
-  getInitialState: function () {
-    return {faceStore: []};
   },
 
   onUserStoreChange: function () {

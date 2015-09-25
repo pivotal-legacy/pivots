@@ -7,21 +7,25 @@ var _ = require('lodash');
 
 var FaceStore = Reflux.createStore({
   listenables: [FaceActions],
-  faceList: [],
+  faces: [],
+
+  getInitialState: function () {
+    return this.faces;
+  },
 
   fetchAll: function () {
     Api.get('/employees')
       .then(function (response) {
-        this.faceList = response.data;
-        this.trigger(this.faceList);
+        this.faces = response.data;
+        this.trigger(this.faces);
       }.bind(this));
   },
 
   search: function (searchName) {
     if (_.isEmpty(searchName)) {
-      this.trigger(this.faceList);
+      this.trigger(this.faces);
     } else {
-      var results = _.filter(this.faceList, function (f) {
+      var results = _.filter(this.faces, function (f) {
         return new RegExp(searchName, 'i').test(f.firstName) ||
           (new RegExp(searchName, 'i').test(f.lastName));
       });
