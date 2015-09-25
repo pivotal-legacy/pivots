@@ -11,19 +11,15 @@ var Login = React.createClass({
   mixins: [
     React.addons.LinkedStateMixin,
     Reflux.listenTo(AuthStore, 'onAuthStoreChange'),
-    Router.Navigation
+    Router.History
   ],
-
-  contextTypes: {
-    router: React.PropTypes.func
-  },
 
   getInitialState: function() {
     return {username: undefined, password: undefined};
   },
 
   onAuthStoreChange: function () {
-    this.transitionTo('/');
+    this.history.pushState(null, '/');
   },
 
   handleSubmit: function (e) {

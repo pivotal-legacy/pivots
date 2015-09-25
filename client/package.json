@@ -29,9 +29,8 @@
     "gulp-util": "^3.0.6",
     "lodash": "^3.10.1",
     "normalize.css": "^3.0.3",
-    "q": "^1.4.1",
     "react": "^0.13.3",
-    "react-router": "^0.13.3",
+    "react-router": "^1.0.0-rc1",
     "reflux": "^0.2.12"
   }
 }

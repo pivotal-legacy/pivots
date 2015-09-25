@@ -9,29 +9,16 @@ var FaceStore = require('../stores/FaceStore');
 var FaceActions = require('../actions/FaceActions');
 var AuthStore = require('../stores/AuthStore');
 var AuthActions = require('../actions/AuthActions');
-var LocalStorage = require('../utils/LocalStorage');
 
 var Directory = React.createClass({
   mixins: [
     Reflux.connect(FaceStore, 'faceStore'),
     Reflux.listenTo(AuthStore, 'onAuthStoreChange'),
-    Router.Navigation
+    Router.History
   ],
 
-  statics: {
-    willTransitionTo: function (transition) {
-      if (!LocalStorage.get('savedJwt')) {
-        transition.redirect('/login'); // routing
-      }
-    }
-  },
-
-  contextTypes: {
-    router: React.PropTypes.func
-  },
-
   onAuthStoreChange: function () {
-    this.transitionTo('/login');
+    this.history.pushState(null, '/login');
   },
 
   componentDidMount: function () {
