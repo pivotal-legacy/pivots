@@ -22,9 +22,13 @@ var Directory = React.createClass({
   statics: {
     willTransitionTo: function (transition) {
       if (!LocalStorage.get('savedJwt')) {
-        transition.redirect('/login');
+        transition.redirect('/login'); // routing
       }
     }
+  },
+
+  contextTypes: {
+    router: React.PropTypes.func
   },
 
   getInitialState: function () {
@@ -32,7 +36,7 @@ var Directory = React.createClass({
   },
 
   onUserStoreChange: function () {
-    this.context.router.transitionTo('/login');
+    this.transitionTo('/login');
   },
 
   componentDidMount: function () {

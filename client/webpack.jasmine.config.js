@@ -10,6 +10,16 @@ var config = {
     filename: 'spec.js'
   },
 
+  module: {
+    loaders: [
+      {
+        test: /\.js?$/,
+        exclude: /node_modules/,
+        loader: 'babel'
+      }
+    ]
+  },
+
   plugins: [envPlugin]
 };
 
