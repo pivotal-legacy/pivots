@@ -67,12 +67,16 @@ var Directory = React.createClass({
             <h1>Directory</h1>
           </div>
           <div className="col-md-2">
-            <a onClick={this.handleLogout} href="#">Logout</a>
+            <a onClick={this.handleLogout} href="#" ref="logout">Logout</a>
           </div>
         </div>
 
         <form>
-          <input id="search_input" type="text" placeholder="search" valueLink={{requestChange: this.handleChange}}/>
+          <input type="text"
+                 placeholder="search"
+                 id="search_input"
+                 ref="search"
+                 valueLink={{requestChange: this.handleChange}}/>
         </form>
 
         {pivotFaces}
