@@ -1,5 +1,3 @@
-'use strict';
-
 var Reflux = require('reflux');
 var React = require('react/addons');
 var Router = require('react-router');

@@ -1,5 +1,3 @@
-'use strict';
-
 var React = require('react');
 
 var RouteNotFound = React.createClass({

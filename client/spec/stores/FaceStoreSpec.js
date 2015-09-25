@@ -1,5 +1,3 @@
-'use strict';
-
 describe('FaceStore', function () {
   var FaceStore = require('../../src/js/stores/FaceStore');
   var SpecHelper = require('../specHelper');

@@ -1,5 +1,3 @@
-'use strict';
-
 var LocalStorage = {
   set: function(key, value) {
     window.localStorage.setItem(key, value);

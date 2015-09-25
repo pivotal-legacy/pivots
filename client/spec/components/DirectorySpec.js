@@ -1,5 +1,3 @@
-'use strict';
-
 describe('Directory', function () {
   var Directory = require('../../src/js/components/Directory');
   var React = require('react/addons');

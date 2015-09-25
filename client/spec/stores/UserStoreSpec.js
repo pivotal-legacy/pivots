@@ -1,5 +1,3 @@
-'use strict';
-
 describe('AuthStore', function () {
   var SpecHelper = require('../specHelper');
   var Api = require('../../src/js/utils/Api');

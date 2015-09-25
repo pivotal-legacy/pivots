@@ -1,5 +1,3 @@
-'use strict';
-
 var Reflux = require('reflux');
 var AuthActions = require('../actions/AuthActions');
 var Api = require('../utils/Api');

@@ -1,5 +1,3 @@
-'use strict';
-
 require('jasmine-ajax');
 require('es6-promise').polyfill();
 

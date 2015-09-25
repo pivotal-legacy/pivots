@@ -1,5 +1,3 @@
-'use strict';
-
 describe('Login', function () {
   var Login = require('../../src/js/components/Login');
   var React = require('react/addons');

@@ -1,5 +1,3 @@
-'use strict';
-
 window.localStorage = {
   store: {},
   getItem: function (key) {
