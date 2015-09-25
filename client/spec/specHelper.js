@@ -1,9 +1,9 @@
 window.localStorage = {
   store: {},
-  getItem: function (key) {
+  getItem: (key) => {
     return this.store[key];
   },
-  setItem: function (key, value) {
+  setItem: (key, value) => {
     this.store[key] = value;
   },
   clear: () => {
@@ -16,21 +16,21 @@ var buildFakePromise = () => {
   var realFailureCallback;
 
   return {
-    then: function (f) {
+    then: (f) => {
       realSuccessCallback = f;
       return this;
     },
 
-    fail: function (f) {
+    fail: (f) => {
       realFailureCallback = f;
       return this;
     },
 
-    resolve: function (payload) {
+    resolve: (payload) => {
       return realSuccessCallback(payload);
     },
 
-    reject: function (payload) {
+    reject: (payload) => {
       return realFailureCallback(payload);
     }
   };

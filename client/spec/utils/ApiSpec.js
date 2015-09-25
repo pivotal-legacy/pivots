@@ -16,7 +16,7 @@ describe('Api', () => {
     jasmine.Ajax.uninstall();
   });
 
-  it('sends GET requests', function (done) {
+  it('sends GET requests', (done) => {
     spyOn(LocalStorage, 'get').and.returnValue('secret-jwt-token');
 
     Api.get('/employees');
@@ -33,7 +33,7 @@ describe('Api', () => {
     }, 0);
   });
 
-  it('sends POST requests', function (done) {
+  it('sends POST requests', (done) => {
     Api.post('/login', {username: 'username', password: 'password'});
 
     setTimeout(() => {

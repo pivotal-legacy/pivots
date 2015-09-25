@@ -12,7 +12,7 @@ var Login = React.createClass({
     Router.History
   ],
 
-  getInitialState: function() {
+  getInitialState() {
     return {username: undefined, password: undefined};
   },
 

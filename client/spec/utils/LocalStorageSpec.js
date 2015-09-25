@@ -3,7 +3,6 @@ require('../specHelper');
 import LocalStorage from '../../src/js/utils/LocalStorage';
 
 describe('LocalStorage', () => {
-
   it('sets an item into local storage', () => {
     LocalStorage.set('jwt-token', 'some-secret-token');
 
