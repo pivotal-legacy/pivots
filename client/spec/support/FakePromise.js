@@ -3,21 +3,21 @@ export default () => {
   let realFailureCallback;
 
   return {
-    then: (f) => {
+    then(f) {
       realSuccessCallback = f;
       return this;
     },
 
-    fail: (f) => {
+    fail(f) {
       realFailureCallback = f;
       return this;
     },
 
-    resolve: (payload) => {
+    resolve(payload) {
       return realSuccessCallback(payload);
     },
 
-    reject: (payload) => {
+    reject(payload) {
       return realFailureCallback(payload);
     }
   };
