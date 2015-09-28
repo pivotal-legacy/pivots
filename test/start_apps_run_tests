@@ -2,10 +2,11 @@ pushd server
 
 dropdb pivots_e2e
 createdb pivots_e2e
-psql -d pivots_e2e -f components/directory/sql/initial_schema.ddl
-psql -d pivots_e2e -f components/directory/sql/seed_data.sql
 
-./gradlew
+DATABASE_URL=jdbc:postgresql://localhost/pivots_e2e ./gradlew flywayMigrate -i
+psql -d pivots_e2e -f ./applications/pivots/src/main/resources/db/seeds.sql
+
+./gradlew clean test build
 
 server_port=8000
 client_port=9000
