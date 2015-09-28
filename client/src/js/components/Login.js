@@ -1,6 +1,6 @@
 import React from 'react/addons';
 import Reflux from 'reflux';
-import Router from 'react-router';
+import {History} from 'react-router';
 
 import AuthActions from '../actions/AuthActions';
 import AuthStore from '../stores/AuthStore';
@@ -9,7 +9,7 @@ var Login = React.createClass({
   mixins: [
     React.addons.LinkedStateMixin,
     Reflux.listenTo(AuthStore, 'onAuthStoreChange'),
-    Router.History
+    History
   ],
 
   getInitialState() {

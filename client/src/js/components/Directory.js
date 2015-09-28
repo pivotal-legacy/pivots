@@ -1,6 +1,6 @@
 import Reflux from 'reflux';
 import React from 'react/addons';
-import Router from 'react-router';
+import {History} from 'react-router';
 import _ from 'lodash';
 import Face from './Face';
 import FaceStore from '../stores/FaceStore';
@@ -12,7 +12,7 @@ var Directory = React.createClass({
   mixins: [
     Reflux.connect(FaceStore, 'faceStore'),
     Reflux.listenTo(AuthStore, 'onAuthStoreChange'),
-    Router.History
+    History
   ],
 
   onAuthStoreChange() {

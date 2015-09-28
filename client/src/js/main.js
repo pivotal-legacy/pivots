@@ -12,7 +12,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 function requireAuth(nextState, redirectTo) {
   if (!LocalStorage.get('savedJwt')) {
-    redirectTo('/login', null, {nextPathname: nextState.location.pathname});
+    redirectTo(null, '/login', {nextPathname: nextState.location.pathname});
   }
 }
 
