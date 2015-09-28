@@ -33,5 +33,9 @@ sleep 5
 
 ./gradlew test
 
+TEST_EXIT_STATUS=$?
+
 kill $JAVA_SERVER_PID
 kill $CLIENT_SERVER_PID
+
+exit $TEST_EXIT_STATUS
