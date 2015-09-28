@@ -17,10 +17,6 @@ describe('Directory', () => {
     React.unmountComponentAtNode(React.findDOMNode(renderedDirectory).parentNode);
   });
 
-  it('sets the initial state to an empty array', () => {
-    expect(renderedDirectory.state.faceStore).toEqual([]);
-  });
-
   it('fetches all faces from the store', () => {
     expect(FaceActions.fetchAll).toHaveBeenCalled();
   });
