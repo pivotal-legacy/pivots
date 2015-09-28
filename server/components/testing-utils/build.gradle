@@ -1,4 +1,4 @@
 dependencies {
-    compile "javax.servlet:javax.servlet-api:3.1.0"
-    compile "org.postgresql:postgresql:9.4-1201-jdbc41"
+    compile "javax.servlet:javax.servlet-api:$servletApiVersion"
+    compile "org.postgresql:postgresql:$postgresVersion"
 }
