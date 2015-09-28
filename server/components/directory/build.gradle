@@ -3,6 +3,7 @@ dependencies {
     compile 'org.springframework:spring-jdbc:4.2.0.RELEASE'
 
     compile "com.fasterxml.jackson.core:jackson-databind:2.5.4"
+    compile project(":components/persistence")
 
     testCompile "org.springframework:spring-test:4.2.0.RELEASE"
     testCompile "javax.servlet:javax.servlet-api:3.1.0"

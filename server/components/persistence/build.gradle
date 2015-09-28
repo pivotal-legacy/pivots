@@ -1,0 +1,17 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath("org.postgresql:postgresql:9.4-1201-jdbc41")
+        classpath("org.flywaydb:flyway-gradle-plugin:3.2.1")
+    }
+}
+
+apply plugin: 'org.flywaydb.flyway'
+
+flyway {
+    url = System.getenv("DATABASE_URL")
+    sqlMigrationPrefix = "" // remove default "V" prefix
+}
