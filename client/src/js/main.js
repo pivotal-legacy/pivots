@@ -1,7 +1,5 @@
 import React from 'react';
-import ReactRouter from 'react-router';
-var Router = ReactRouter.Router;
-var Route = ReactRouter.Route;
+import {Router, Route} from 'react-router';
 
 import Directory from './components/Directory';
 import Login from './components/Login';
