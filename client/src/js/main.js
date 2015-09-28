@@ -4,17 +4,12 @@ import {Router, Route} from 'react-router';
 import Directory from './components/Directory';
 import Login from './components/Login';
 import RouteNotFound from './components/RouteNotFound';
-import LocalStorage from './utils/LocalStorage';
+
+import {requireAuth} from './utils/Authentication';
 
 // CSS
 import '../css/main.css';
 import 'bootstrap/dist/css/bootstrap.css';
-
-function requireAuth(nextState, redirectTo) {
-  if (!LocalStorage.get('savedJwt')) {
-    redirectTo(null, '/login', {nextPathname: nextState.location.pathname});
-  }
-}
 
 var routes = (
   <Router>
