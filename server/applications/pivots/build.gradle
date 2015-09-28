@@ -1,3 +1,20 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath("org.postgresql:postgresql:9.4-1201-jdbc41")
+        classpath("org.flywaydb:flyway-gradle-plugin:3.2.1")
+    }
+}
+
+apply plugin: 'org.flywaydb.flyway'
+
+flyway {
+    url = System.getenv("DATABASE_URL")
+}
+
 dependencies {
     compile("com.zaxxer:HikariCP:2.4.0")
     compile("org.postgresql:postgresql:9.4-1201-jdbc41")

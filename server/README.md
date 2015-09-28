@@ -14,14 +14,14 @@ $ createdb pivots_development
 - Migrate the test and development databases
 
 ```
-$ psql -d pivots_test -f components/directory/sql/initial_schema.ddl
-$ psql -d pivots_development -f components/directory/sql/initial_schema.ddl
+$ DATABASE_URL=jdbc:postgresql://localhost/pivots_test ./gradlew flywayMigrate -i
+$ DATABASE_URL=jdbc:postgresql://localhost/pivots_development ./gradlew flywayMigrate -i
 ```
 
 - (Optional) Seed the development database with sample data
 
 ```
-$ psql -d pivots_development -f components/directory/sql/seed_data.sql
+$ psql -d pivots_development -f applications/src/main/resources/db/migration/seeds.sql
 ```
 
 - Create and source an `.env` file following `.env.example` with the appropriate values.
