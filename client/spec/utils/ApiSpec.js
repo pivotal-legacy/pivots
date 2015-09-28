@@ -1,5 +1,5 @@
-require('jasmine-ajax');
-require('es6-promise').polyfill();
+import 'jasmine-ajax';
+import {polyfill} from 'es6-promise';
 
 import Api from '../../src/js/utils/Api';
 import LocalStorage from '../../src/js/utils/LocalStorage';
@@ -8,6 +8,7 @@ import EnvConstants from '../../src/js/constants/EnvConstants';
 describe('Api', () => {
 
   beforeEach(() => {
+    polyfill();
     spyOn(EnvConstants, 'getApiServerUrl').and.returnValue('fake-server-url');
     jasmine.Ajax.install();
   });

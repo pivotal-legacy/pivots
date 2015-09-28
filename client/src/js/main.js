@@ -9,8 +9,8 @@ import RouteNotFound from './components/RouteNotFound';
 import LocalStorage from './utils/LocalStorage';
 
 // CSS
-require('../css/main.css');
-require('bootstrap/dist/css/bootstrap.css');
+import '../css/main.css';
+import 'bootstrap/dist/css/bootstrap.css';
 
 function requireAuth(nextState, redirectTo) {
   if (!LocalStorage.get('savedJwt')) {
