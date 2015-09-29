@@ -39,6 +39,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .sessionManagement().sessionCreationPolicy(STATELESS).and()
 
+                .headers()
+                .contentTypeOptions()
+                .xssProtection()
+                .cacheControl()
+                .frameOptions().and()
+
                 .authorizeRequests()
 
                 .antMatchers(OPTIONS, ALL_ENDPOINTS).permitAll()
