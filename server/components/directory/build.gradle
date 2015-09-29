@@ -1,9 +1,26 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath("org.postgresql:postgresql:$postgresVersion")
+        classpath("org.flywaydb:flyway-gradle-plugin:3.2.1")
+    }
+}
+
+apply plugin: 'org.flywaydb.flyway'
+
+flyway {
+    url = System.getenv("DATABASE_URL")
+    sqlMigrationPrefix = "" // remove default "V" prefix
+}
+
 dependencies {
     compile "org.springframework:spring-webmvc:$springVersion"
     compile "org.springframework:spring-jdbc:$springVersion"
 
     compile "com.fasterxml.jackson.core:jackson-databind:2.5.4"
-    compile project(":components/persistence")
 
     testCompile "org.springframework:spring-test:$springVersion"
     testCompile "javax.servlet:javax.servlet-api:$servletApiVersion"

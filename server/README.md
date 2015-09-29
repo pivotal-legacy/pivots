@@ -21,7 +21,7 @@ $ DATABASE_URL=jdbc:postgresql://localhost/pivots_development ./gradlew flywayMi
 - (Optional) Seed the development database with sample data
 
 ```
-$ psql -d pivots_development -f components/persistence/src/main/resources/db/seeds.sql
+$ psql -d pivots_development -f components/directory/src/main/resources/db/seeds.sql
 ```
 
 - Create and source an `.env` file following `.env.example` with the appropriate values.
