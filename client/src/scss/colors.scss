@@ -1,7 +1,13 @@
+@import "variables";
+
 .bg-brand {
-    background-color: #00786e;
+    background-color: $brand-1;
+}
+
+.bg-neutral-2 {
+    background-color: $neutral-2;
 }
 
 .neutral-1 {
-    color: #ffffff;
+    color: $neutral-1;
 }

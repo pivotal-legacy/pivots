@@ -51,13 +51,18 @@ var Directory = React.createClass({
           </div>
         </div>
 
-        <form>
-          <input type="text"
-                 placeholder="search"
-                 id="search_input"
-                 ref="search"
-                 valueLink={{requestChange: this.handleChange}}/>
-        </form>
+        <div className="bg-neutral-2 row">
+          <div className="col-md-12">
+            <form>
+              <input type="text"
+                     className="pull-right"
+                     placeholder="Search by Name"
+                     id="search_input"
+                     ref="search"
+                     valueLink={{requestChange: this.handleChange}}/>
+            </form>
+          </div>
+        </div>
 
         {pivotFaces}
       </div>
