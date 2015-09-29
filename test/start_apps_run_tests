@@ -4,7 +4,7 @@ dropdb pivots_e2e
 createdb pivots_e2e
 
 DATABASE_URL=jdbc:postgresql://localhost/pivots_e2e ./gradlew flywayMigrate -i
-psql -d pivots_e2e -f ./components/persistence/src/main/resources/db/seeds.sql
+psql -d pivots_e2e -f ./components/directory/src/main/resources/db/seeds.sql
 
 ./gradlew clean test build
 
