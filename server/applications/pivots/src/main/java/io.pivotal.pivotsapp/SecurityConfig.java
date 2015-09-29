@@ -16,6 +16,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import static org.springframework.http.HttpMethod.OPTIONS;
 import static org.springframework.http.HttpMethod.POST;
+import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
 @EnableWebSecurity
 @Configuration
@@ -31,13 +32,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private TokenAuthenticationService tokenAuthenticationService;
 
-    public SecurityConfig() {
-        super(true);
-    }
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                .csrf().disable()
+
+                .sessionManagement().sessionCreationPolicy(STATELESS).and()
+
                 .authorizeRequests()
 
                 .antMatchers(OPTIONS, ALL_ENDPOINTS).permitAll()
@@ -59,9 +60,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilterBefore(
                         new AuthenticationFilter(tokenAuthenticationService),
                         UsernamePasswordAuthenticationFilter.class
-                )
-
-                .anonymous();
+                );
 
     }
 
