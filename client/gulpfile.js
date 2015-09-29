@@ -6,6 +6,7 @@ var webpack = require('webpack-stream');
 var connect = require('gulp-connect');
 var jasmine = require('gulp-jasmine-browser');
 var eslint = require('gulp-eslint');
+var sass = require('gulp-sass');
 
 function buildJs(config) {
   return gulp.src('src/js/main.js')
@@ -22,8 +23,14 @@ gulp.task('js:dist', ['clean', 'eslint'], function () {
   return buildJs('./webpack.dist.config.js');
 });
 
+gulp.task('scss', ['clean'], function() {
+  gulp.src('src/scss/**/*.scss')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('dist/'));
+});
+
 gulp.task('watch', ['build'], function () {
-  return gulp.watch(['src/js/**/*', 'src/css/**/*'], ['build']);
+  return gulp.watch(['src/js/**/*', 'src/scss/**/*'], ['build']);
 });
 
 gulp.task('connect', ['build'], function () {
@@ -55,7 +62,7 @@ gulp.task('eslint', ['clean'], function () {
     .pipe(eslint.failOnError());
 });
 
-gulp.task('build', ['clean', 'eslint', 'js']);
+gulp.task('build', ['clean', 'eslint', 'js', 'scss']);
 gulp.task('build:dist', ['clean', 'js:dist']);
 
 gulp.task('default', ['eslint', 'build', 'connect', 'watch']);

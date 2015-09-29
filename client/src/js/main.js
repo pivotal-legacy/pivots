@@ -8,8 +8,8 @@ import RouteNotFound from './components/RouteNotFound';
 import {requireAuth} from './utils/Authentication';
 
 // CSS
-import '../css/main.css';
 import 'bootstrap/dist/css/bootstrap.css';
+import '../../dist/main.css';
 
 var routes = (
   <Router>

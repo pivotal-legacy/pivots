@@ -39,7 +39,7 @@ public class PivotsTest extends FluentTest {
         assertThat(find("div", withText().contains("Whitney")).isEmpty(), is(true));
         assertThat(find("div", withText().contains("Hee Won")).isEmpty(), is(true));
 
-        click("a", withText("Logout"));
+        click("a", withText("LOGOUT"));
 
         await().atMost(1, TimeUnit.SECONDS).until("div").containsText("Login");
     }

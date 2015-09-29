@@ -42,12 +42,12 @@ var Directory = React.createClass({
 
     return (
       <div className="container">
-        <div className="row">
+        <div className="bg-brand row">
           <div className="col-md-10">
-            <h1>Directory</h1>
+            <h2 className="neutral-1">Directory</h2>
           </div>
-          <div className="col-md-2">
-            <a onClick={this.handleLogout} href="#" ref="logout">Logout</a>
+          <div className="col-md-2 aligner txt-r" style={{height: '53px'}}>
+            <a className="aligner-item text-uppercase neutral-1" onClick={this.handleLogout} href="#" ref="logout">Logout</a>
           </div>
         </div>
 
