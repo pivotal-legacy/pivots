@@ -9,7 +9,7 @@ import {requireAuth} from './utils/Authentication';
 
 // CSS
 import 'bootstrap/dist/css/bootstrap.css';
-import '../../dist/main.css';
+import '../scss/main.scss';
 
 var routes = (
   <Router>
