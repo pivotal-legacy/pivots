@@ -1,4 +1,4 @@
-rootProject.name = 'pivots'
+rootProject.name = 'server'
 
 include 'applications/pivots'
 
