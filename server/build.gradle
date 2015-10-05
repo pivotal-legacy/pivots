@@ -1,33 +1,16 @@
 group 'io.pivotal'
 version '1.0-SNAPSHOT'
 
-buildscript {
-    ext {
-        springBootVersion = '1.2.5.RELEASE'
-    }
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-        classpath("io.spring.gradle:dependency-management-plugin:0.5.2.RELEASE")
-    }
-}
-
 defaultTasks "clean", "test", "build"
 
 subprojects {
     apply plugin: 'java'
-    apply plugin: 'spring-boot'
-    apply plugin: 'io.spring.dependency-management'
 
     sourceCompatibility = 1.8
     targetCompatibility = 1.8
 
-    //noinspection GroovyUnusedAssignment
-    mainClassName = "io.pivotal.pivotsapp.Application"
-
     ext {
+        springBootVersion = "1.2.5.RELEASE"
         postgresVersion = "9.4-1201-jdbc41"
         servletApiVersion = "3.1.0"
         springVersion = "4.2.0.RELEASE"
