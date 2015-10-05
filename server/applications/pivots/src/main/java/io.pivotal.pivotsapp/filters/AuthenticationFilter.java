@@ -1,4 +1,4 @@
-package io.pivotal.pivotsapp;
+package io.pivotal.pivotsapp.filters;
 
 import io.pivotal.security.TokenAuthenticationService;
 import org.springframework.security.core.Authentication;
@@ -13,11 +13,11 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
-class AuthenticationFilter extends GenericFilterBean {
+public class AuthenticationFilter extends GenericFilterBean {
 
     private final TokenAuthenticationService tokenAuthenticationService;
 
-    protected AuthenticationFilter(TokenAuthenticationService tokenAuthService) {
+    public AuthenticationFilter(TokenAuthenticationService tokenAuthService) {
         this.tokenAuthenticationService = tokenAuthService;
     }
 

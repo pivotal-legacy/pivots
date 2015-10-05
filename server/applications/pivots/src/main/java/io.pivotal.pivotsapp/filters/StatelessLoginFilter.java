@@ -1,4 +1,4 @@
-package io.pivotal.pivotsapp;
+package io.pivotal.pivotsapp.filters;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.pivotal.security.TokenAuthenticationService;
@@ -20,13 +20,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-class StatelessLoginFilter extends AbstractAuthenticationProcessingFilter {
+public class StatelessLoginFilter extends AbstractAuthenticationProcessingFilter {
 
     public static final String POST = "POST";
     private final TokenAuthenticationService tokenAuthenticationService;
     private final PersistedUserDetailsService userDetailsService;
 
-    protected StatelessLoginFilter(
+    public StatelessLoginFilter(
             String urlMapping,
             TokenAuthenticationService tokenAuthenticationService,
             PersistedUserDetailsService userDetailsService,

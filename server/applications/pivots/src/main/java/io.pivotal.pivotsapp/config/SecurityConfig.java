@@ -1,5 +1,7 @@
-package io.pivotal.pivotsapp;
+package io.pivotal.pivotsapp.config;
 
+import io.pivotal.pivotsapp.filters.AuthenticationFilter;
+import io.pivotal.pivotsapp.filters.StatelessLoginFilter;
 import io.pivotal.security.PersistedUserDetailsService;
 import io.pivotal.security.TokenAuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package io.pivotal.pivotsapp;
+package io.pivotal.pivotsapp.filters;
 
 import org.springframework.stereotype.Component;
 
