@@ -6,7 +6,7 @@ FakePromise.prototype.then = function (f) {
   return this;
 };
 
-FakePromise.prototype.fail = function (f) {
+FakePromise.prototype.catch = function (f) {
   this.realFailureCallback = f;
   return this;
 };
