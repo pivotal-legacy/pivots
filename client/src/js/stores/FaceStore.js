@@ -1,6 +1,5 @@
 import Reflux from 'reflux';
 import FaceActions from '../actions/FaceActions';
-import Api from '../utils/Api';
 import _ from 'lodash';
 
 var FaceStore = Reflux.createStore({
@@ -11,12 +10,9 @@ var FaceStore = Reflux.createStore({
     return this.faces;
   },
 
-  fetchAll() {
-    Api.get('/employees')
-      .then(function (response) {
-        this.faces = response.data;
-        this.trigger(this.faces);
-      }.bind(this));
+  fetchAllCompleted(faces) {
+    this.faces = faces;
+    this.trigger(this.faces);
   },
 
   search(searchName) {

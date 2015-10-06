@@ -1,22 +1,14 @@
 import FaceStore from '../../src/js/stores/FaceStore';
-import FakePromise from '../support/FakePromise';
-import Api from '../../src/js/utils/Api';
 
 describe('FaceStore', () => {
   let whitney, danny, markM, markD;
 
-  describe('#fetchAll', () => {
-    it('makes a request to Api', () => {
-      let fakePromise = new FakePromise();
-      spyOn(Api, 'get').and.returnValue(fakePromise);
+  describe('#fetchAllCompleted', () => {
+    it('sets the returned faces and triggers state change', () => {
       spyOn(FaceStore, 'trigger');
 
-      FaceStore.fetchAll();
-
-      expect(Api.get).toHaveBeenCalledWith('/employees');
-
       let faces = [{name: 'Danny'}];
-      fakePromise.resolve({data: faces});
+      FaceStore.fetchAllCompleted(faces);
 
       expect(FaceStore.faces).toEqual(faces);
       expect(FaceStore.trigger).toHaveBeenCalledWith(faces);

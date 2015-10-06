@@ -3,7 +3,7 @@ import LocalStorage from '../../src/js/utils/LocalStorage';
 
 describe('AuthStore', () => {
   describe('#loginCompleted', () => {
-    it('makes a request to Api and sets the returned token in LocalStore', () => {
+    it('sets the returned token in LocalStore', () => {
       let authToken = 'token-returned-from-api';
       spyOn(LocalStorage, 'set');
 
