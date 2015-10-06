@@ -20,7 +20,8 @@ var config = {
     ]
   },
 
-  plugins: [envPlugin]
+  plugins: [envPlugin],
+  watch: true
 };
 
 module.exports = config;
