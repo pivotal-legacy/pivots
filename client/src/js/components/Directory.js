@@ -1,4 +1,4 @@
-import Reflux from 'reflux';
+import {connect} from 'reflux';
 import React from 'react/addons';
 import {History} from 'react-router';
 import _ from 'lodash';
@@ -10,17 +10,25 @@ import AuthActions from '../actions/AuthActions';
 
 var Directory = React.createClass({
   mixins: [
-    Reflux.connect(FaceStore, 'faceStore'),
-    Reflux.listenTo(AuthStore, 'onAuthStoreChange'),
+    connect(FaceStore, 'faceStore'),
     History
   ],
+
+  getInitialState() {
+    return FaceStore.getInitialState();
+  },
 
   onAuthStoreChange() {
     this.history.pushState(null, '/login');
   },
 
   componentDidMount() {
+    this.unsubscribe = AuthStore.listen(this.onAuthStoreChange);
     FaceActions.fetchAll();
+  },
+
+  componentWillUnmount: function() {
+    this.unsubscribe();
   },
 
   handleLogout(e) {
