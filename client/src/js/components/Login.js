@@ -7,13 +7,12 @@ import AuthStore from '../stores/AuthStore';
 
 var Login = React.createClass({
   mixins: [
-    React.addons.LinkedStateMixin,
     Reflux.listenTo(AuthStore, 'onAuthStoreChange'),
     History
   ],
 
   getInitialState() {
-    return {username: undefined, password: undefined};
+    return {username: '', password: ''};
   },
 
   onAuthStoreChange() {
@@ -24,6 +23,14 @@ var Login = React.createClass({
     e.preventDefault();
 
     AuthActions.login(this.state.username, this.state.password);
+  },
+
+  handleUsernameChange(e) {
+    this.setState({username: e.target.value});
+  },
+
+  handlePasswordChange(e) {
+    this.setState({password: e.target.value});
   },
 
   render() {
@@ -39,7 +46,7 @@ var Login = React.createClass({
                    placeholder="Username"
                    ref="username"
                    className="form-control"
-                   valueLink={this.linkState('username')} />
+                   onChange={this.handleUsernameChange} />
           </div>
           <div className="form-group">
             <label className="sr-only" htmlFor="password">Password</label>
@@ -48,7 +55,7 @@ var Login = React.createClass({
                    ref="password"
                    className="form-control"
                    placeholder="Password"
-                   valueLink={this.linkState('password')} />
+                   onChange={this.handlePasswordChange} />
           </div>
           <button type="submit" className="btn btn-default">Sign in</button>
         </form>

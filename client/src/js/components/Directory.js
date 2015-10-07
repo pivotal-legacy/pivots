@@ -34,7 +34,7 @@ var Directory = React.createClass({
   },
 
   render() {
-    var pivotFaces = _.map(this.state.faceStore, function (pivot) {
+    let pivotFaces = _.map(this.state.faceStore, function (pivot) {
       return (
         <Face key={pivot.id} pivot={pivot}/>
       );
@@ -47,7 +47,10 @@ var Directory = React.createClass({
             <h2 className="neutral-1">Directory</h2>
           </div>
           <div className="col-md-2 aligner txt-r" style={{height: '53px'}}>
-            <a className="aligner-item text-uppercase neutral-1" onClick={this.handleLogout} href="#" ref="logout">Logout</a>
+            <a href="#"
+               className="aligner-item text-uppercase neutral-1"
+               ref="logout"
+               onClick={this.handleLogout}>Logout</a>
           </div>
         </div>
 
