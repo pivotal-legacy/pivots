@@ -29,8 +29,8 @@ var Directory = React.createClass({
     AuthActions.logout();
   },
 
-  handleChange(newValue) {
-    FaceActions.search(newValue);
+  handleChange(e) {
+    FaceActions.search(e.target.value);
   },
 
   render() {
@@ -62,7 +62,7 @@ var Directory = React.createClass({
                      placeholder="Search by Name"
                      id="search_input"
                      ref="search"
-                     valueLink={{requestChange: this.handleChange}}/>
+                     onChange={this.handleChange}/>
             </form>
           </div>
         </div>
