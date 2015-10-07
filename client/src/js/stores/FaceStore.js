@@ -3,8 +3,11 @@ import FaceActions from '../actions/FaceActions';
 import _ from 'lodash';
 
 var FaceStore = Reflux.createStore({
-  listenables: [FaceActions],
   faces: [],
+
+  init() {
+    this.listenToMany(FaceActions);
+  },
 
   getInitialState() {
     return this.faces;

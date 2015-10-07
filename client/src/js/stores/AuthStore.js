@@ -3,7 +3,9 @@ import AuthActions from '../actions/AuthActions';
 import LocalStorage from '../utils/LocalStorage';
 
 var AuthStore = Reflux.createStore({
-  listenables: [AuthActions],
+  init() {
+    this.listenToMany(AuthActions);
+  },
 
   loginCompleted(token) {
     LocalStorage.set('savedJwt', token);
