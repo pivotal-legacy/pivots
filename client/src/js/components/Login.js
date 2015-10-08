@@ -1,18 +1,22 @@
 import React from 'react/addons';
-import Reflux from 'reflux';
 import {History} from 'react-router';
 
 import AuthActions from '../actions/AuthActions';
 import AuthStore from '../stores/AuthStore';
 
 var Login = React.createClass({
-  mixins: [
-    Reflux.listenTo(AuthStore, 'onAuthStoreChange'),
-    History
-  ],
+  mixins: [History],
 
   getInitialState() {
     return {username: '', password: ''};
+  },
+
+  componentDidMount() {
+    this.unsubscribe = AuthStore.listen(this.onAuthStoreChange);
+  },
+
+  componentWillUnmount() {
+    this.unsubscribe();
   },
 
   onAuthStoreChange() {
