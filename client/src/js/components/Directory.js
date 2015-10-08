@@ -1,4 +1,3 @@
-import {connect} from 'reflux';
 import React from 'react/addons';
 import {History} from 'react-router';
 import _ from 'lodash';
@@ -9,26 +8,29 @@ import AuthStore from '../stores/AuthStore';
 import AuthActions from '../actions/AuthActions';
 
 var Directory = React.createClass({
-  mixins: [
-    connect(FaceStore, 'faceStore'),
-    History
-  ],
-
-  getInitialState() {
-    return FaceStore.getInitialState();
-  },
+  mixins: [History],
 
   onAuthStoreChange() {
     this.history.pushState(null, '/login');
   },
 
+  getInitialState() {
+    return {faces: []};
+  },
+
+  onFaceStoreChange(faces) {
+    this.setState({faces: faces});
+  },
+
   componentDidMount() {
     this.unsubscribe = AuthStore.listen(this.onAuthStoreChange);
+    this.faceStoreUnsubscribe = FaceStore.listen(this.onFaceStoreChange);
     FaceActions.fetchAll();
   },
 
   componentWillUnmount: function() {
     this.unsubscribe();
+    this.faceStoreUnsubscribe();
   },
 
   handleLogout(e) {
@@ -42,7 +44,7 @@ var Directory = React.createClass({
   },
 
   render() {
-    let pivotFaces = _.map(this.state.faceStore, function (pivot) {
+    let pivotFaces = _.map(this.state.faces, function (pivot) {
       return (
         <Face key={pivot.id} pivot={pivot}/>
       );
